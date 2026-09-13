@@ -4,6 +4,7 @@ import "@/App.css";
 import { LanguageProvider } from "@/i18n";
 import { Toaster } from "@/components/ui/sonner";
 import Header from "@/components/Header";
+import QuickWhatsApp from "@/components/QuickWhatsApp";
 import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
 import Services from "@/components/Services";
@@ -50,6 +51,7 @@ function App() {
         </main>
         <Footer />
         <FloatingWhatsApp />
+        <QuickWhatsApp />
         <Toaster position="top-center" theme="dark" />
       </div>
     </LanguageProvider>

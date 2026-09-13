@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
-import { useLanguage } from "@/i18n";
-import { CONTACTS } from "@/config";
+import { openWhatsAppForm } from "@/components/QuickWhatsApp";
 
 const WhatsAppIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
@@ -9,14 +8,10 @@ const WhatsAppIcon = () => (
 );
 
 export default function FloatingWhatsApp() {
-  const { t } = useLanguage();
-  const href = `https://wa.me/${CONTACTS.whatsappNumber}?text=${encodeURIComponent(t.hero.ctaWhats)}`;
   return (
-    <motion.a
+    <motion.button
       data-testid="floating-whatsapp-button"
-      href={href}
-      target="_blank"
-      rel="noreferrer"
+      onClick={openWhatsAppForm}
       aria-label="WhatsApp"
       initial={{ opacity: 0, scale: 0.6 }}
       animate={{ opacity: 1, scale: 1 }}
@@ -27,6 +22,6 @@ export default function FloatingWhatsApp() {
       <span className="relative flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] text-white shadow-2xl shadow-black/50 transition-transform duration-300 group-hover:scale-110">
         <WhatsAppIcon />
       </span>
-    </motion.a>
+    </motion.button>
   );
 }

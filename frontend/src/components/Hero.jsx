@@ -3,7 +3,8 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Plane, BadgeCheck, Clock, MapPin } from "lucide-react";
 import { useLanguage } from "@/i18n";
 import { scrollTo } from "@/lib/scroll";
-import { CONTACTS, IMAGES } from "@/config";
+import { openWhatsAppForm } from "@/components/QuickWhatsApp";
+import { IMAGES } from "@/config";
 
 const Line = ({ children, delay = 0, className = "" }) => (
   <span className="block overflow-hidden pb-1">
@@ -26,8 +27,6 @@ export default function Hero() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "22%"]);
   const contentOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
-
-  const waLink = `https://wa.me/${CONTACTS.whatsappNumber}?text=${encodeURIComponent(t.hero.ctaWhats)}`;
 
   return (
     <section id="home" ref={ref} data-testid="hero-section" className="relative min-h-[100svh] flex flex-col justify-end overflow-hidden">
@@ -91,15 +90,13 @@ export default function Hero() {
           >
             {t.hero.ctaQuote}
           </button>
-          <a
+          <button
             data-testid="hero-whatsapp-button"
-            href={waLink}
-            target="_blank"
-            rel="noreferrer"
+            onClick={openWhatsAppForm}
             className="px-8 py-4 border border-gold/50 text-gold-light text-xs font-semibold tracking-[0.2em] uppercase text-center hover:bg-gold/10 hover:border-gold transition-colors duration-300"
           >
             {t.hero.ctaWhats}
-          </a>
+          </button>
         </motion.div>
       </motion.div>
 

@@ -25,6 +25,10 @@ Sito one-page luxury per servizio NCC premium con base a Milano (brand: FIRST MI
 - OWNER_EMAIL backend puntato alla Gmail reale (test invio riuscito: email_sent=true)
 - Privacy Policy e Cookie Policy complete (IT/EN, GDPR art. 6, diritti interessato, cookie solo tecnici) in modali scorrevoli
 
+## Aggiornamento (13/09/2026 — modulo WhatsApp rapido)
+- Nuovo modulo "Richiesta rapida via WhatsApp" (components/QuickWhatsApp.jsx): modale con campi essenziali (nome, partenza, destinazione, data, ora, passeggeri, note) che apre wa.me con messaggio strutturato
+- Trigger: pulsante WhatsApp flottante e CTA hero "Contattaci su WhatsApp". Verificato: popup wa.me verso 393334220189 con testo compilato correttamente
+
 ## Da completare (richiede dati dal cliente)
 - P1: URL social Instagram/Facebook/LinkedIn (ora "#")
 - P2: Dati societari (P.IVA/sede legale) da aggiungere a policy e footer quando disponibili
