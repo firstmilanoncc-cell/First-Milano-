@@ -25,7 +25,7 @@ export default function Hero() {
   const { t } = useLanguage();
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "22%"]);
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
   const contentOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
   return (
@@ -34,7 +34,7 @@ export default function Hero() {
         <img
           src={IMAGES.hero}
           alt="Piazza del Duomo di Milano al tramonto con Mercedes nera e autista professionale"
-          className="w-full h-[115%] object-cover"
+          className="w-full h-[108%] object-cover object-[58%_center]"
           loading="eager"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-obsidian/80 via-obsidian/45 to-obsidian" />

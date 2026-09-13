@@ -34,6 +34,9 @@ Sito one-page luxury per servizio NCC premium con base a Milano (brand: FIRST MI
 - Integrato in entrambi i moduli (WhatsApp rapido + preventivo email) su partenza/destinazione; inserimento manuale sempre consentito
 - Verificato: "Malpensa aeroporto" → suggerimenti T1/T2; "Milano Centrale" → Piazza Duca d'Aosta
 
+## Aggiornamento (13/09/2026 — hero)
+- Ritaglio hero rifatto (620,58,1310,395 dal mockup, 2x) + zoom ridotto (h-108%, parallasse 10%, object-position 58%): Duomo, vettura intera e autista tutti visibili
+
 ## Da completare (richiede dati dal cliente)
 - P1: URL social Instagram/Facebook/LinkedIn (ora "#")
 - P2: Dati societari (P.IVA/sede legale) da aggiungere a policy e footer quando disponibili
