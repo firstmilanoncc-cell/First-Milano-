@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import Lenis from "lenis";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "@/App.css";
 import { LanguageProvider } from "@/i18n";
 import { Toaster } from "@/components/ui/sonner";
@@ -15,6 +16,29 @@ import QuoteForm from "@/components/QuoteForm";
 import Contacts from "@/components/Contacts";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import PaymentPage from "@/components/PaymentPage";
+import PaymentResult from "@/components/PaymentResult";
+
+function Home() {
+  return (
+    <>
+      <Header />
+      <main>
+        <Hero />
+        <Marquee />
+        <Services />
+        <Fleet />
+        <Airports />
+        <WhyUs />
+        <QuoteForm />
+        <Contacts />
+      </main>
+      <Footer />
+      <FloatingWhatsApp />
+      <QuickWhatsApp />
+    </>
+  );
+}
 
 function App() {
   useEffect(() => {
@@ -36,20 +60,14 @@ function App() {
   return (
     <LanguageProvider>
       <div className="App grain bg-obsidian text-ivory font-sans antialiased">
-        <Header />
-        <main>
-          <Hero />
-          <Marquee />
-          <Services />
-          <Fleet />
-          <Airports />
-          <WhyUs />
-          <QuoteForm />
-          <Contacts />
-        </main>
-        <Footer />
-        <FloatingWhatsApp />
-        <QuickWhatsApp />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/pagamento" element={<PaymentPage />} />
+            <Route path="/pagamento/successo" element={<PaymentResult />} />
+            <Route path="/pagamento/annullato" element={<PaymentResult cancelled />} />
+          </Routes>
+        </BrowserRouter>
         <Toaster position="top-center" theme="dark" />
       </div>
     </LanguageProvider>

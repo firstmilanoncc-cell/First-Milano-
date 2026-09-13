@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter, HTTPException
+from fastapi import FastAPI, APIRouter, HTTPException, Request
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -8,6 +8,7 @@ import ipaddress
 import logging
 import uuid
 import httpx
+import stripe
 from pathlib import Path
 from pydantic import BaseModel, EmailStr
 from typing import Optional
@@ -34,6 +35,10 @@ EMAIL_KEY = os.environ.get("EMERGENT_EMAIL_KEY")
 EMAIL_FROM_NAME = os.environ.get("EMAIL_FROM_NAME", "FIRST MILANO")
 EMAIL_REPLY_TO = os.environ.get("EMAIL_REPLY_TO")
 OWNER_EMAIL = os.environ.get("OWNER_EMAIL")
+
+stripe.api_key = os.environ.get("STRIPE_SECRET_KEY") or "sk_test_emergent"
+STRIPE_WEBHOOK_SECRET = os.environ.get("STRIPE_WEBHOOK_SECRET", "")
+PAYMENT_PIN = os.environ.get("PAYMENT_PIN")
 
 # ---- Email guardrail gate (managed email integration) ----
 _SHORTENERS = ("bit.ly", "tinyurl.com", "t.co", "is.gd", "cutt.ly", "goo.gl", "rebrand.ly")
@@ -198,6 +203,132 @@ async def create_quote(q: QuoteRequest):
         except Exception as e:
             logger.error(f"Quote email failed: {e}")
     return {"status": "success", "email_sent": email_sent}
+
+
+# ---- Pagamenti con carta (area riservata) ----
+class PaymentLinkRequest(BaseModel):
+    pin: str
+    amount: float
+    description: str = "Servizio NCC FIRST MILANO"
+    reference: Optional[str] = ""
+    client_name: Optional[str] = ""
+    origin_url: str
+
+
+def _check_pin(pin: str):
+    if not PAYMENT_PIN or pin != PAYMENT_PIN:
+        raise HTTPException(status_code=403, detail="PIN non valido")
+
+
+@api_router.post("/payments/create-link")
+async def create_payment_link(req: PaymentLinkRequest):
+    _check_pin(req.pin)
+    if not (1 <= req.amount <= 50000):
+        raise HTTPException(status_code=422, detail="Importo non valido")
+    now = datetime.now(timezone.utc).isoformat()
+    kwargs = dict(
+        line_items=[{
+            "price_data": {
+                "currency": "eur",
+                "unit_amount": int(round(req.amount * 100)),
+                "product_data": {"name": req.description or "Servizio NCC FIRST MILANO",
+                                 "tax_code": "txcd_20030000"},
+            },
+            "quantity": 1,
+        }],
+        mode="payment",
+        success_url=f"{req.origin_url}/pagamento/successo?session_id={{CHECKOUT_SESSION_ID}}",
+        cancel_url=f"{req.origin_url}/pagamento/annullato",
+        metadata={"reference": req.reference or "", "client_name": req.client_name or ""},
+    )
+    try:
+        session = stripe.checkout.Session.create(**kwargs, managed_payments={"enabled": True})
+        tax_mode = "full"
+    except stripe.error.InvalidRequestError as e:
+        msg = (e.user_message or "").lower()
+        if "managed payments" in msg or "ineligible" in msg:
+            session = stripe.checkout.Session.create(
+                **kwargs, automatic_tax={"enabled": True}, billing_address_collection="required"
+            )
+            tax_mode = "calc_only"
+        else:
+            logger.error(f"Stripe error: {e}")
+            raise HTTPException(status_code=502, detail="Errore nella creazione del pagamento")
+    await db.payment_transactions.insert_one({
+        "id": str(uuid.uuid4()),
+        "session_id": session.id,
+        "checkout_url": session.url,
+        "amount": round(req.amount, 2),
+        "currency": "eur",
+        "description": req.description,
+        "reference": req.reference or "",
+        "client_name": req.client_name or "",
+        "tax_mode": tax_mode,
+        "status": "initiated",
+        "payment_status": "pending",
+        "created_at": now,
+        "updated_at": now,
+    })
+    return {"checkout_url": session.url, "session_id": session.id}
+
+
+@api_router.get("/payments")
+async def list_payments(pin: str = ""):
+    _check_pin(pin)
+    cursor = db.payment_transactions.find({}, {"_id": 0}).sort("created_at", -1).limit(20)
+    return {"payments": await cursor.to_list(length=20)}
+
+
+@api_router.get("/payments/status/{session_id}")
+async def payment_status(session_id: str):
+    record = await db.payment_transactions.find_one({"session_id": session_id})
+    if not record:
+        raise HTTPException(status_code=404, detail="Transazione non trovata")
+    if record.get("payment_status") != "paid":
+        try:
+            s = stripe.checkout.Session.retrieve(session_id)
+            if s.payment_status == "paid" or s.status == "complete":
+                await db.payment_transactions.update_one(
+                    {"session_id": session_id, "payment_status": {"$ne": "paid"}},
+                    {"$set": {"status": "completed", "payment_status": "paid",
+                              "stripe_payment_intent_id": s.payment_intent,
+                              "updated_at": datetime.now(timezone.utc).isoformat()}},
+                )
+                record = await db.payment_transactions.find_one({"session_id": session_id})
+        except stripe.error.StripeError:
+            pass
+    return {"session_id": record["session_id"], "status": record["status"],
+            "payment_status": record["payment_status"]}
+
+
+@api_router.post("/stripe/webhook")
+async def stripe_webhook(request: Request):
+    payload = await request.body()
+    sig = request.headers.get("stripe-signature", "")
+    try:
+        event = stripe.Webhook.construct_event(payload, sig, STRIPE_WEBHOOK_SECRET)
+    except stripe.error.SignatureVerificationError:
+        raise HTTPException(status_code=400, detail="Invalid signature")
+    obj, etype = event["data"]["object"], event["type"]
+    now = datetime.now(timezone.utc).isoformat()
+    if etype == "checkout.session.completed":
+        await db.payment_transactions.update_one(
+            {"session_id": obj["id"], "payment_status": {"$ne": "paid"}},
+            {"$set": {"status": "completed", "payment_status": obj.get("payment_status", "paid"),
+                      "stripe_payment_intent_id": obj.get("payment_intent"), "updated_at": now}},
+        )
+    elif etype == "checkout.session.async_payment_succeeded":
+        await db.payment_transactions.update_one(
+            {"session_id": obj["id"]}, {"$set": {"payment_status": "paid", "updated_at": now}})
+    elif etype == "checkout.session.async_payment_failed":
+        await db.payment_transactions.update_one(
+            {"session_id": obj["id"]},
+            {"$set": {"status": "failed", "payment_status": "failed", "updated_at": now}})
+    elif etype == "checkout.session.expired":
+        await db.payment_transactions.update_one(
+            {"session_id": obj["id"]},
+            {"$set": {"status": "expired", "payment_status": "expired", "updated_at": now}})
+    return {"status": "ok"}
 
 
 @api_router.get("/health")

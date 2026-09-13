@@ -47,6 +47,13 @@ Sito one-page luxury per servizio NCC premium con base a Milano (brand: FIRST MI
 - Footer: 3 colonne (brand, Contatti con icone, Navigazione a due colonne) + social quadrati oro + barra legale
 - Copy servizi allineato alla versione Lovable
 
+## Aggiornamento (13/09/2026 — pagamenti con carta)
+- Pagina nascosta /pagamento (non linkata nel sito): PIN operatore (env PAYMENT_PIN, default FIRST2026), form importo/cliente/riferimento/descrizione → Stripe Checkout link (EUR) condivisibile via copia o WhatsApp; storico ultimi 20 pagamenti con stato (in attesa/pagato/fallito/scaduto)
+- Pagine /pagamento/successo (polling status ogni 2.5s) e /pagamento/annullato
+- Backend: POST /api/payments/create-link (PIN), GET /api/payments?pin=, GET /api/payments/status/{id}, webhook /api/stripe/webhook idempotente
+- Stripe sandbox claimable (Flow A, paese IT): chiavi in backend/.env; tax_mode "full" (managed payments) con fallback automatic_tax; tax code txcd_20030000 (servizi generici) su product_data inline
+- Verificato end-to-end: link generato → checkout Stripe €150 → pagamento carta test 4242 → redirect successo → stato PAGATO nello storico
+
 ## Da completare (richiede dati dal cliente)
 - P1: URL social Instagram/Facebook/LinkedIn (ora "#")
 - P2: Dati societari (P.IVA/sede legale) da aggiungere a policy e footer quando disponibili
