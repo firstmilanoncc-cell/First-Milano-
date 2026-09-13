@@ -10,7 +10,6 @@ import Marquee from "@/components/Marquee";
 import Services from "@/components/Services";
 import Fleet from "@/components/Fleet";
 import Airports from "@/components/Airports";
-import Bodyguard from "@/components/Bodyguard";
 import WhyUs from "@/components/WhyUs";
 import QuoteForm from "@/components/QuoteForm";
 import Contacts from "@/components/Contacts";
@@ -44,7 +43,6 @@ function App() {
           <Services />
           <Fleet />
           <Airports />
-          <Bodyguard />
           <WhyUs />
           <QuoteForm />
           <Contacts />

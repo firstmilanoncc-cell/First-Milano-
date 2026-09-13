@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Instagram, Facebook, Linkedin, X } from "lucide-react";
+import { Instagram, Facebook, Linkedin, X, Phone, MessageCircle, Mail, MapPin } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/i18n";
 import { scrollTo } from "@/lib/scroll";
@@ -46,19 +46,68 @@ export default function Footer() {
   const [modal, setModal] = useState(null);
 
   const socials = [
-    { id: "instagram", icon: Instagram, url: CONTACTS.social.instagram },
     { id: "facebook", icon: Facebook, url: CONTACTS.social.facebook },
+    { id: "instagram", icon: Instagram, url: CONTACTS.social.instagram },
     { id: "linkedin", icon: Linkedin, url: CONTACTS.social.linkedin },
   ];
 
+  const contactRows = [
+    { id: "phone", icon: Phone, value: CONTACTS.phoneDisplay, href: `tel:${CONTACTS.phoneRaw}` },
+    { id: "whatsapp", icon: MessageCircle, value: CONTACTS.whatsappDisplay, href: `https://wa.me/${CONTACTS.whatsappNumber}` },
+    { id: "email", icon: Mail, value: CONTACTS.email, href: `mailto:${CONTACTS.email}` },
+    { id: "address", icon: MapPin, value: CONTACTS.address, href: null },
+  ];
+
+  const half = Math.ceil(NAV.length / 2);
+
   return (
     <footer data-testid="main-footer" className="border-t border-gold/15 bg-obsidian">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid grid-cols-1 md:grid-cols-3 gap-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid grid-cols-1 md:grid-cols-[1.2fr_1fr_1fr] gap-12">
         <div>
           <p className="font-serif text-xl tracking-[0.18em] text-ivory">FIRST MILANO</p>
           <p className="text-[10px] tracking-[0.3em] uppercase text-gold mt-1">Private Chauffeur Service</p>
           <p className="mt-5 text-sm text-sub leading-relaxed max-w-xs">{t.footer.tagline}</p>
-          <div className="mt-6 flex gap-3">
+        </div>
+        <div>
+          <p className="text-[11px] uppercase tracking-[0.3em] text-gold font-semibold">{t.footer.contactsTitle}</p>
+          <ul className="mt-5 space-y-3.5">
+            {contactRows.map(({ id, icon: Icon, value, href }) => (
+              <li key={id}>
+                {href ? (
+                  <a data-testid={`footer-contact-${id}`} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className="flex items-center gap-3 text-sm text-sub hover:text-gold-light transition-colors duration-300">
+                    <Icon size={15} strokeWidth={1.5} className="text-gold shrink-0" />
+                    {value}
+                  </a>
+                ) : (
+                  <span data-testid={`footer-contact-${id}`} className="flex items-center gap-3 text-sm text-sub">
+                    <Icon size={15} strokeWidth={1.5} className="text-gold shrink-0" />
+                    {value}
+                  </span>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <p className="text-[11px] uppercase tracking-[0.3em] text-gold font-semibold">{t.footer.links}</p>
+          <div className="mt-5 grid grid-cols-2 gap-x-6 gap-y-2.5">
+            {[NAV.slice(0, half), NAV.slice(half)].map((col, ci) => (
+              <ul key={ci} className="space-y-2.5">
+                {col.map((item) => (
+                  <li key={item.hash}>
+                    <button
+                      data-testid={`footer-link-${item.key}`}
+                      onClick={() => scrollTo(item.hash)}
+                      className="text-[13px] tracking-[0.08em] uppercase text-sub hover:text-gold-light transition-colors duration-300"
+                    >
+                      {t.nav[item.key]}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            ))}
+          </div>
+          <div className="mt-7 flex gap-3">
             {socials.map(({ id, icon: Icon, url }) => (
               <a
                 key={id}
@@ -67,49 +116,26 @@ export default function Footer() {
                 target={url ? "_blank" : undefined}
                 rel="noreferrer"
                 aria-label={id}
-                className="p-2.5 border border-white/10 text-sub hover:text-gold hover:border-gold/50 transition-colors duration-300"
+                className="p-2.5 border border-gold/40 text-gold hover:bg-gold hover:text-obsidian transition-colors duration-300"
               >
-                <Icon size={16} strokeWidth={1.5} />
+                <Icon size={15} strokeWidth={1.5} />
               </a>
             ))}
           </div>
         </div>
-        <div>
-          <p className="text-[11px] uppercase tracking-[0.3em] text-gold font-semibold">{t.footer.links}</p>
-          <ul className="mt-5 space-y-2.5">
-            {NAV.map((item) => (
-              <li key={item.hash}>
-                <button
-                  data-testid={`footer-link-${item.key}`}
-                  onClick={() => scrollTo(item.hash)}
-                  className="text-sm text-sub hover:text-gold-light transition-colors duration-300"
-                >
-                  {t.nav[item.key]}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <p className="text-[11px] uppercase tracking-[0.3em] text-gold font-semibold">{t.footer.legal}</p>
-          <ul className="mt-5 space-y-2.5">
-            <li>
-              <button data-testid="footer-privacy-link" onClick={() => setModal("privacy")} className="text-sm text-sub hover:text-gold-light transition-colors duration-300">
-                {t.footer.privacy}
-              </button>
-            </li>
-            <li>
-              <button data-testid="footer-cookie-link" onClick={() => setModal("cookie")} className="text-sm text-sub hover:text-gold-light transition-colors duration-300">
-                {t.footer.cookie}
-              </button>
-            </li>
-          </ul>
-        </div>
       </div>
       <div className="border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-dim">© {new Date().getFullYear()} FIRST MILANO — {t.footer.rights}</p>
-          <p className="text-[10px] tracking-[0.25em] uppercase text-dim">Milano, Italia</p>
+          <p className="text-xs text-dim">© {new Date().getFullYear()} FIRST MILANO. {t.footer.rights}</p>
+          <div className="flex items-center gap-4 text-xs text-dim">
+            <button data-testid="footer-privacy-link" onClick={() => setModal("privacy")} className="hover:text-gold-light transition-colors">
+              {t.footer.privacy}
+            </button>
+            <span className="text-white/10">|</span>
+            <button data-testid="footer-cookie-link" onClick={() => setModal("cookie")} className="hover:text-gold-light transition-colors">
+              {t.footer.cookie}
+            </button>
+          </div>
         </div>
       </div>
 

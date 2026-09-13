@@ -1,9 +1,10 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Plane, BadgeCheck, Clock, MapPin } from "lucide-react";
+import { Plane, BadgeCheck, Clock, MapPin, CalendarDays } from "lucide-react";
 import { useLanguage } from "@/i18n";
 import { scrollTo } from "@/lib/scroll";
 import { openWhatsAppForm } from "@/components/QuickWhatsApp";
+import { WhatsAppIcon } from "@/components/FloatingWhatsApp";
 import { IMAGES } from "@/config";
 
 const Line = ({ children, delay = 0, className = "" }) => (
@@ -25,15 +26,14 @@ export default function Hero() {
   const { t } = useLanguage();
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "8%"]);
 
   return (
     <section id="home" ref={ref} data-testid="hero-section" className="relative lg:min-h-[100svh] flex flex-col lg:justify-end overflow-hidden bg-obsidian">
       <div className="lg:hidden relative pt-[70px]">
         <img
           src={IMAGES.hero}
-          alt="Piazza del Duomo di Milano al tramonto con Mercedes nera e autista professionale"
+          alt="Piazza del Duomo di Milano di sera con Mercedes nera e autista professionale"
           className="w-full h-auto block"
           loading="eager"
         />
@@ -42,14 +42,15 @@ export default function Hero() {
       <motion.div style={{ y: bgY }} className="hidden lg:block absolute inset-0">
         <img
           src={IMAGES.hero}
-          alt="Piazza del Duomo di Milano al tramonto con Mercedes nera e autista professionale"
-          className="w-full h-[108%] object-cover object-[58%_center]"
+          alt="Piazza del Duomo di Milano di sera con Mercedes nera e autista professionale"
+          className="w-full h-[106%] object-cover object-[center_35%]"
           loading="eager"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-obsidian/80 via-obsidian/45 to-obsidian" />
+        <div className="absolute inset-0 bg-gradient-to-r from-obsidian/90 via-obsidian/45 to-obsidian/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-obsidian/40" />
       </motion.div>
 
-      <motion.div style={{ opacity: contentOpacity }} className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-8 pb-8 lg:pt-36 lg:pb-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-10 pb-10 lg:pt-44 lg:pb-20">
         <Line delay={0.15}>
           <span data-testid="hero-eyebrow" className="inline-flex items-center gap-3 text-[11px] sm:text-xs uppercase tracking-[0.35em] text-gold font-semibold">
             <span className="h-px w-10 bg-gold/70" />
@@ -57,20 +58,26 @@ export default function Hero() {
           </span>
         </Line>
 
-        <h1 className="mt-6 font-serif uppercase leading-[0.95]">
+        <h1 className="mt-6 font-serif uppercase leading-[0.92] text-ivory">
           <Line delay={0.3}>
-            <span data-testid="hero-title-brand" className="text-5xl sm:text-7xl lg:text-8xl tracking-[0.06em] text-ivory">
-              {t.hero.title1}
+            <span data-testid="hero-title-brand" className="text-6xl sm:text-7xl lg:text-9xl tracking-[0.02em]">
+              {t.hero.line1}
             </span>
           </Line>
-          <Line delay={0.45}>
-            <span data-testid="hero-title-sub" className="block mt-2 text-xl sm:text-3xl lg:text-4xl tracking-[0.35em] text-gold-light">
-              {t.hero.title2}
+          <Line delay={0.42}>
+            <span className="text-6xl sm:text-7xl lg:text-9xl tracking-[0.02em]">
+              {t.hero.line2}
             </span>
           </Line>
         </h1>
 
-        <Line delay={0.6}>
+        <Line delay={0.55}>
+          <span data-testid="hero-title-sub" className="block mt-5 text-xs sm:text-sm tracking-[0.45em] uppercase text-gold-light">
+            {t.hero.title2}
+          </span>
+        </Line>
+
+        <Line delay={0.68}>
           <span data-testid="hero-tagline" className="block mt-6 font-serif italic text-lg sm:text-2xl text-ivory/90">
             {t.hero.tagline}
           </span>
@@ -81,7 +88,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.85, duration: 0.9, ease: [0.25, 1, 0.5, 1] }}
-          className="mt-5 max-w-xl text-sm sm:text-base text-sub leading-relaxed"
+          className="mt-5 max-w-xl text-sm sm:text-base text-ivory/70 leading-relaxed"
         >
           {t.hero.desc}
         </motion.p>
@@ -95,19 +102,21 @@ export default function Hero() {
           <button
             data-testid="hero-quote-button"
             onClick={() => scrollTo("#preventivo")}
-            className="px-8 py-4 bg-gold text-obsidian text-xs font-semibold tracking-[0.2em] uppercase hover:bg-gold-light transition-colors duration-300"
+            className="inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-gold text-obsidian text-xs font-semibold tracking-[0.2em] uppercase hover:bg-gold-light transition-colors duration-300"
           >
+            <CalendarDays size={15} strokeWidth={2} />
             {t.hero.ctaQuote}
           </button>
           <button
             data-testid="hero-whatsapp-button"
             onClick={openWhatsAppForm}
-            className="px-8 py-4 border border-gold/50 text-gold-light text-xs font-semibold tracking-[0.2em] uppercase text-center hover:bg-gold/10 hover:border-gold transition-colors duration-300"
+            className="inline-flex items-center justify-center gap-2.5 px-8 py-4 border border-ivory/40 text-ivory text-xs font-semibold tracking-[0.2em] uppercase hover:border-gold hover:text-gold-light transition-colors duration-300"
           >
+            <span className="w-4 h-4"><WhatsAppIcon /></span>
             {t.hero.ctaWhats}
           </button>
         </motion.div>
-      </motion.div>
+      </div>
 
       <motion.div
         initial={{ opacity: 0 }}

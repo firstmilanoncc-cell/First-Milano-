@@ -1,50 +1,69 @@
-import { Plane } from "lucide-react";
+import { Plane, ShieldCheck, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/i18n";
-import { Reveal, Eyebrow } from "@/components/Reveal";
+import { Reveal } from "@/components/Reveal";
 import { scrollTo } from "@/lib/scroll";
 import { IMAGES } from "@/config";
+
+const Panel = ({ id, image, icon: Icon, eyebrow, title, text, note, cta, testId }) => (
+  <div
+    id={id}
+    data-testid={testId}
+    className="group relative overflow-hidden min-h-[480px] lg:min-h-[560px] flex items-end"
+  >
+    <img
+      src={image}
+      alt={title}
+      loading="lazy"
+      className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-105"
+    />
+    <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/35 to-obsidian/5" />
+    <div className="relative p-8 sm:p-10 lg:p-14">
+      {eyebrow && (
+        <p className="text-[10px] uppercase tracking-[0.3em] text-gold font-semibold mb-4">{eyebrow}</p>
+      )}
+      <Icon size={26} strokeWidth={1.25} className="text-gold" />
+      <h3 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-[2.6rem] text-ivory uppercase leading-tight">{title}</h3>
+      <p className="mt-4 text-sm text-ivory/70 leading-relaxed max-w-md">{text}</p>
+      {note && <p className="mt-3 text-[11px] text-ivory/45 italic max-w-md leading-relaxed">{note}</p>}
+      <button
+        data-testid={`${testId}-cta`}
+        onClick={() => scrollTo("#preventivo")}
+        className="mt-6 inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.22em] uppercase text-gold-light hover:text-gold hover:gap-3.5 transition-all duration-300"
+      >
+        {cta}
+        <ArrowRight size={14} strokeWidth={2} />
+      </button>
+    </div>
+  </div>
+);
 
 export default function Airports() {
   const { t } = useLanguage();
   return (
-    <section id="aeroporti" data-testid="airports-section" className="relative py-20 lg:py-32 overflow-hidden">
-      <div className="absolute inset-0">
-        <img src={IMAGES.airports} alt="Torre di controllo e ala d'aereo al tramonto" loading="lazy" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-obsidian/85" />
-      </div>
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Reveal>
-          <Eyebrow>{t.airports.eyebrow}</Eyebrow>
-          <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl text-ivory max-w-3xl leading-tight">
-            {t.airports.title}
-          </h2>
-          <p className="mt-6 max-w-xl text-sm sm:text-base text-sub leading-relaxed">{t.airports.desc}</p>
-        </Reveal>
-
-        <div className="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-px bg-white/10 border border-white/10">
-          {t.airports.list.map((a, i) => (
-            <Reveal key={a.code} delay={i * 0.12}>
-              <div data-testid={`airport-card-${a.code.toLowerCase()}`} className="group bg-obsidian/80 backdrop-blur-sm p-8 lg:p-10 text-center transition-colors duration-500 hover:bg-anthracite/90">
-                <Plane size={20} strokeWidth={1.25} className="mx-auto text-gold transition-transform duration-500 group-hover:-translate-y-1" />
-                <p className="mt-5 font-serif text-4xl sm:text-5xl tracking-[0.1em] text-ivory group-hover:text-gold-light transition-colors duration-300">
-                  {a.code}
-                </p>
-                <p className="mt-3 text-xs uppercase tracking-[0.2em] text-sub">{a.name}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-
-        <Reveal delay={0.3} className="mt-12">
-          <button
-            data-testid="airports-transfer-button"
-            onClick={() => scrollTo("#preventivo")}
-            className="px-10 py-4 bg-gold text-obsidian text-xs font-semibold tracking-[0.2em] uppercase hover:bg-gold-light transition-colors duration-300"
-          >
-            {t.airports.cta}
-          </button>
-        </Reveal>
-      </div>
+    <section id="aeroporti" data-testid="airports-section" className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-white/10 border-y border-white/5">
+      <Reveal>
+        <Panel
+          image={IMAGES.airports}
+          icon={Plane}
+          title={t.airports.title}
+          text={t.airports.desc}
+          cta={t.airports.cta}
+          testId="panel-airports"
+        />
+      </Reveal>
+      <Reveal delay={0.12}>
+        <Panel
+          id="guardia"
+          image={IMAGES.guard}
+          icon={ShieldCheck}
+          eyebrow={t.guard.eyebrow}
+          title={t.guard.title}
+          text={t.guard.text}
+          note={t.guard.note}
+          cta={t.guard.cta}
+          testId="panel-guard"
+        />
+      </Reveal>
     </section>
   );
 }
