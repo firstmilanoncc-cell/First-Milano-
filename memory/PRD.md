@@ -54,6 +54,10 @@ Sito one-page luxury per servizio NCC premium con base a Milano (brand: FIRST MI
 - Stripe sandbox claimable (Flow A, paese IT): chiavi in backend/.env; tax_mode "full" (managed payments) con fallback automatic_tax; tax code txcd_20030000 (servizi generici) su product_data inline
 - Verificato end-to-end: link generato → checkout Stripe €150 → pagamento carta test 4242 → redirect successo → stato PAGATO nello storico
 
+## Aggiornamento (13/09/2026 — sezione Contatti rimossa)
+- Eliminata la sezione Contatti dedicata (Contacts.jsx rimosso); i recapiti restano nella colonna "Contatti" del footer
+- La voce di menu "Contatti" ora scrolla al footer (id="contatti" sul footer)
+
 ## Da completare (richiede dati dal cliente)
 - P1: URL social Instagram/Facebook/LinkedIn (ora "#")
 - P2: Dati societari (P.IVA/sede legale) da aggiungere a policy e footer quando disponibili

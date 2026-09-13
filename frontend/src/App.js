@@ -13,7 +13,6 @@ import Fleet from "@/components/Fleet";
 import Airports from "@/components/Airports";
 import WhyUs from "@/components/WhyUs";
 import QuoteForm from "@/components/QuoteForm";
-import Contacts from "@/components/Contacts";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import PaymentPage from "@/components/PaymentPage";
@@ -31,7 +30,6 @@ function Home() {
         <Airports />
         <WhyUs />
         <QuoteForm />
-        <Contacts />
       </main>
       <Footer />
       <FloatingWhatsApp />
