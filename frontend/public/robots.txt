@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /pagamento
+
+Sitemap: https://firstmilanoncc.it/sitemap.xml

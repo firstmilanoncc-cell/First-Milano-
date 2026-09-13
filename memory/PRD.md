@@ -58,6 +58,12 @@ Sito one-page luxury per servizio NCC premium con base a Milano (brand: FIRST MI
 - Eliminata la sezione Contatti dedicata (Contacts.jsx rimosso); i recapiti restano nella colonna "Contatti" del footer
 - La voce di menu "Contatti" ora scrolla al footer (id="contatti" sul footer)
 
+## Aggiornamento (13/09/2026 — SEO tecnico)
+- Aggiunti public/robots.txt (Disallow /pagamento, sitemap link) e public/sitemap.xml (https://firstmilanoncc.it/)
+- index.html: canonical, robots index/follow, geo meta (IT-MI/Milano), OG completi (og:url, og:image=/images/hero.jpg, og:locale it_IT+en_US), Twitter card, JSON-LD LocalBusiness arricchito (telefono, email, geo coordinates, priceRange, areaServed, openingHours 24/7)
+- NOTA: modifiche a public/ richiedono re-publish per andare live sul dominio; restart frontend necessario per rigenerare index.html in preview
+- Da fare lato utente: abilitare "Enable Search Engine Crawling" nel pannello Publish, registrare Google Search Console e inviare sitemap
+
 ## Da completare (richiede dati dal cliente)
 - P1: URL social Instagram/Facebook/LinkedIn (ora "#")
 - P2: Dati societari (P.IVA/sede legale) da aggiungere a policy e footer quando disponibili
