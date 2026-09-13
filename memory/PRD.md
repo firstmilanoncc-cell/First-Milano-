@@ -40,7 +40,7 @@ Sito one-page luxury per servizio NCC premium con base a Milano (brand: FIRST MI
 
 ## Aggiornamento (13/09/2026 — redesign da riferimento Lovable)
 - Replicate design di https://firstmilanoncc-luxury-chauffeur.lovable.app: foto scaricate dagli asset Lovable (hero, berlina, van, aeroporto, guardia) in public/images/
-- Hero: titolo FIRST/MILANO su due righe, gradiente da sinistra, CTA con icone, strip feature; mobile = foto a dimensione naturale
+- Hero: titolo FIRST/MILANO su due righe, gradiente da sinistra, CTA con icone, strip feature; testi sovrapposti alla foto su tutti i dispositivi (mobile: dimensioni ridotte, object-position 64%)
 - Servizi e Perché FIRST MILANO su fondo avorio (cream #F4F0E6, oro scuro golddeep #A5882F), titoli serif centrati con divisore oro
 - Flotta: card a tutta foto con testo sovrapposto e checkmark oro
 - Aeroporti + Guardia: due pannelli fotografici affiancati full-bleed con "SCOPRI DI PIÙ" (Bodyguard.jsx rimosso, ancore #aeroporti/#guardia nei pannelli)

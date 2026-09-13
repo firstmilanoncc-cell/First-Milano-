@@ -29,56 +29,47 @@ export default function Hero() {
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "8%"]);
 
   return (
-    <section id="home" ref={ref} data-testid="hero-section" className="relative lg:min-h-[100svh] flex flex-col lg:justify-end overflow-hidden bg-obsidian">
-      <div className="lg:hidden relative pt-[70px]">
+    <section id="home" ref={ref} data-testid="hero-section" className="relative min-h-[100svh] flex flex-col overflow-hidden bg-obsidian">
+      <motion.div style={{ y: bgY }} className="absolute inset-0">
         <img
           src={IMAGES.hero}
           alt="Piazza del Duomo di Milano di sera con Mercedes nera e autista professionale"
-          className="w-full h-auto block"
+          className="w-full h-[106%] object-cover object-[64%_center] lg:object-[center_35%]"
           loading="eager"
         />
-        <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-b from-transparent to-obsidian" />
-      </div>
-      <motion.div style={{ y: bgY }} className="hidden lg:block absolute inset-0">
-        <img
-          src={IMAGES.hero}
-          alt="Piazza del Duomo di Milano di sera con Mercedes nera e autista professionale"
-          className="w-full h-[106%] object-cover object-[center_35%]"
-          loading="eager"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-obsidian/90 via-obsidian/45 to-obsidian/10" />
-        <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-obsidian/40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-obsidian/75 via-obsidian/40 to-obsidian/90 lg:bg-gradient-to-r lg:from-obsidian/90 lg:via-obsidian/45 lg:to-obsidian/10" />
+        <div className="hidden lg:block absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-obsidian/40" />
       </motion.div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-10 pb-10 lg:pt-44 lg:pb-20">
+      <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 w-full flex-1 flex flex-col justify-center pt-24 pb-10 lg:pt-44 lg:pb-20">
         <Line delay={0.15}>
-          <span data-testid="hero-eyebrow" className="inline-flex items-center gap-3 text-[11px] sm:text-xs uppercase tracking-[0.35em] text-gold font-semibold">
-            <span className="h-px w-10 bg-gold/70" />
+          <span data-testid="hero-eyebrow" className="inline-flex items-center gap-3 text-[10px] sm:text-xs uppercase tracking-[0.3em] sm:tracking-[0.35em] text-gold font-semibold">
+            <span className="h-px w-8 sm:w-10 bg-gold/70" />
             {t.hero.eyebrow}
           </span>
         </Line>
 
-        <h1 className="mt-6 font-serif uppercase leading-[0.92] text-ivory">
+        <h1 className="mt-4 lg:mt-6 font-serif uppercase leading-[0.92] text-ivory">
           <Line delay={0.3}>
-            <span data-testid="hero-title-brand" className="text-6xl sm:text-7xl lg:text-9xl tracking-[0.02em]">
+            <span data-testid="hero-title-brand" className="text-[2.6rem] sm:text-7xl lg:text-9xl tracking-[0.02em]">
               {t.hero.line1}
             </span>
           </Line>
           <Line delay={0.42}>
-            <span className="text-6xl sm:text-7xl lg:text-9xl tracking-[0.02em]">
+            <span className="text-[2.6rem] sm:text-7xl lg:text-9xl tracking-[0.02em]">
               {t.hero.line2}
             </span>
           </Line>
         </h1>
 
         <Line delay={0.55}>
-          <span data-testid="hero-title-sub" className="block mt-5 text-xs sm:text-sm tracking-[0.45em] uppercase text-gold-light">
+          <span data-testid="hero-title-sub" className="block mt-3 lg:mt-5 text-[10px] sm:text-sm tracking-[0.35em] sm:tracking-[0.45em] uppercase text-gold-light">
             {t.hero.title2}
           </span>
         </Line>
 
         <Line delay={0.68}>
-          <span data-testid="hero-tagline" className="block mt-6 font-serif italic text-lg sm:text-2xl text-ivory/90">
+          <span data-testid="hero-tagline" className="block mt-4 lg:mt-6 font-serif italic text-base sm:text-2xl text-ivory/90">
             {t.hero.tagline}
           </span>
         </Line>
@@ -88,7 +79,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.85, duration: 0.9, ease: [0.25, 1, 0.5, 1] }}
-          className="mt-5 max-w-xl text-sm sm:text-base text-ivory/70 leading-relaxed"
+          className="mt-4 lg:mt-5 max-w-xl text-[13px] sm:text-base text-ivory/70 leading-relaxed"
         >
           {t.hero.desc}
         </motion.p>
@@ -97,12 +88,12 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.05, duration: 0.9, ease: [0.25, 1, 0.5, 1] }}
-          className="mt-8 flex flex-col sm:flex-row gap-4"
+          className="mt-6 lg:mt-8 flex flex-col sm:flex-row gap-3 lg:gap-4"
         >
           <button
             data-testid="hero-quote-button"
             onClick={() => scrollTo("#preventivo")}
-            className="inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-gold text-obsidian text-xs font-semibold tracking-[0.2em] uppercase hover:bg-gold-light transition-colors duration-300"
+            className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 lg:px-8 lg:py-4 bg-gold text-obsidian text-[11px] lg:text-xs font-semibold tracking-[0.2em] uppercase hover:bg-gold-light transition-colors duration-300"
           >
             <CalendarDays size={15} strokeWidth={2} />
             {t.hero.ctaQuote}
@@ -110,7 +101,7 @@ export default function Hero() {
           <button
             data-testid="hero-whatsapp-button"
             onClick={openWhatsAppForm}
-            className="inline-flex items-center justify-center gap-2.5 px-8 py-4 border border-ivory/40 text-ivory text-xs font-semibold tracking-[0.2em] uppercase hover:border-gold hover:text-gold-light transition-colors duration-300"
+            className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 lg:px-8 lg:py-4 border border-ivory/40 text-ivory text-[11px] lg:text-xs font-semibold tracking-[0.2em] uppercase hover:border-gold hover:text-gold-light transition-colors duration-300"
           >
             <span className="w-4 h-4"><WhatsAppIcon /></span>
             {t.hero.ctaWhats}
@@ -128,11 +119,11 @@ export default function Hero() {
           {t.hero.features.map((f, i) => {
             const Icon = FEATURE_ICONS[i];
             return (
-              <div key={f.title} data-testid={`hero-feature-${i}`} className="flex items-start gap-3 px-4 py-5 sm:px-6">
+              <div key={f.title} data-testid={`hero-feature-${i}`} className="flex items-start gap-3 px-3 py-4 sm:px-6 sm:py-5">
                 <Icon size={18} className="text-gold mt-0.5 shrink-0" strokeWidth={1.5} />
                 <div>
-                  <p className="text-[11px] sm:text-xs font-semibold tracking-[0.15em] uppercase text-ivory">{f.title}</p>
-                  <p className="text-[11px] sm:text-xs text-dim mt-1">{f.text}</p>
+                  <p className="text-[10px] sm:text-xs font-semibold tracking-[0.15em] uppercase text-ivory">{f.title}</p>
+                  <p className="text-[10px] sm:text-xs text-dim mt-1">{f.text}</p>
                 </div>
               </div>
             );
