@@ -29,8 +29,17 @@ export default function Hero() {
   const contentOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
   return (
-    <section id="home" ref={ref} data-testid="hero-section" className="relative min-h-[100svh] flex flex-col justify-end overflow-hidden">
-      <motion.div style={{ y: bgY }} className="absolute inset-0">
+    <section id="home" ref={ref} data-testid="hero-section" className="relative lg:min-h-[100svh] flex flex-col lg:justify-end overflow-hidden bg-obsidian">
+      <div className="lg:hidden relative pt-[70px]">
+        <img
+          src={IMAGES.hero}
+          alt="Piazza del Duomo di Milano al tramonto con Mercedes nera e autista professionale"
+          className="w-full h-auto block"
+          loading="eager"
+        />
+        <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-b from-transparent to-obsidian" />
+      </div>
+      <motion.div style={{ y: bgY }} className="hidden lg:block absolute inset-0">
         <img
           src={IMAGES.hero}
           alt="Piazza del Duomo di Milano al tramonto con Mercedes nera e autista professionale"
@@ -40,7 +49,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-obsidian/80 via-obsidian/45 to-obsidian" />
       </motion.div>
 
-      <motion.div style={{ opacity: contentOpacity }} className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-36 pb-10 sm:pb-16">
+      <motion.div style={{ opacity: contentOpacity }} className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-8 pb-8 lg:pt-36 lg:pb-16">
         <Line delay={0.15}>
           <span data-testid="hero-eyebrow" className="inline-flex items-center gap-3 text-[11px] sm:text-xs uppercase tracking-[0.35em] text-gold font-semibold">
             <span className="h-px w-10 bg-gold/70" />
