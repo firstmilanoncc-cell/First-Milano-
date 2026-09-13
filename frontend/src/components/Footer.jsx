@@ -36,7 +36,7 @@ const LegalModal = ({ title, body, onClose, closeLabel }) => (
           <X size={20} />
         </button>
       </div>
-      <p className="mt-4 text-sm text-sub leading-relaxed">{body}</p>
+      <p className="mt-4 text-sm text-sub leading-relaxed whitespace-pre-line max-h-[55vh] overflow-y-auto pr-2">{body}</p>
     </motion.div>
   </motion.div>
 );

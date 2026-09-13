@@ -20,13 +20,15 @@ Sito one-page luxury per servizio NCC premium con base a Milano (brand: FIRST MI
 - Marquee editoriale, manifesto numerato, header vetro→nero on scroll, menu mobile, WhatsApp flottante, modali Privacy/Cookie placeholder
 - SEO: meta title/description, JSON-LD LocalBusiness, testi con keyword naturali
 
+## Aggiornamento (13/09/2026 — recapiti e policy)
+- Recapiti reali integrati: Tel./WhatsApp +39 333 422 0189, email Firstmilanoncc@gmail.com
+- OWNER_EMAIL backend puntato alla Gmail reale (test invio riuscito: email_sent=true)
+- Privacy Policy e Cookie Policy complete (IT/EN, GDPR art. 6, diritti interessato, cookie solo tecnici) in modali scorrevoli
+
 ## Da completare (richiede dati dal cliente)
-- P0: Numero WhatsApp reale (ora placeholder 390000000000 in src/config.js)
-- P0: Email titolare reale per ricevere i preventivi (ora OWNER_EMAIL=delivered@resend.dev di test in backend/.env)
-- P1: Telefono ed email pubblici nei Contatti (ora "DA INSERIRE")
 - P1: URL social Instagram/Facebook/LinkedIn (ora "#")
-- P2: Testi legali completi Privacy/Cookie Policy
-- P2: Foto aggiuntive reali della flotta se disponibili
+- P2: Dati societari (P.IVA/sede legale) da aggiungere a policy e footer quando disponibili
+- P2: Foto reali della flotta se si vuole sostituire quelle del mockup
 
 ## Nessuna credenziale di accesso
 Il sito non ha area riservata/login.

@@ -1,10 +1,10 @@
 // Contatti FIRST MILANO — modificare qui i recapiti reali.
 export const CONTACTS = {
-  phoneDisplay: "DA INSERIRE",
-  phoneRaw: "", // es. "+390212345678"
-  whatsappDisplay: "DA INSERIRE",
-  whatsappNumber: "390000000000", // numero WhatsApp reale, solo cifre con prefisso (es. 393331234567)
-  email: "DA INSERIRE",
+  phoneDisplay: "+39 333 422 0189",
+  phoneRaw: "+393334220189",
+  whatsappDisplay: "+39 333 422 0189",
+  whatsappNumber: "393334220189",
+  email: "Firstmilanoncc@gmail.com",
   address: "Milano, Italia",
   social: {
     instagram: "",
