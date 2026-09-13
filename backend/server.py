@@ -223,7 +223,7 @@ def _check_pin(pin: str):
 @api_router.post("/payments/create-link")
 async def create_payment_link(req: PaymentLinkRequest):
     _check_pin(req.pin)
-    if not (1 <= req.amount <= 50000):
+    if not (1 <= req.amount <= 500000):
         raise HTTPException(status_code=422, detail="Importo non valido")
     now = datetime.now(timezone.utc).isoformat()
     kwargs = dict(
