@@ -64,6 +64,13 @@ Sito one-page luxury per servizio NCC premium con base a Milano (brand: FIRST MI
 - NOTA: modifiche a public/ richiedono re-publish per andare live sul dominio; restart frontend necessario per rigenerare index.html in preview
 - Da fare lato utente: abilitare "Enable Search Engine Crawling" nel pannello Publish, registrare Google Search Console e inviare sitemap
 
+## Aggiornamento (13/09/2026 — pagine SEO dedicate)
+- 5 landing page SEO: /transfer-malpensa, /transfer-linate, /transfer-orio-al-serio, /autista-a-disposizione, /eventi-fashion-week (src/servicePages.js + components/ServicePage.jsx), IT/EN con meta title/description/canonical per pagina
+- Titoli gestiti per-pagina (rimosso dal LanguageProvider; Home e ServicePage li impostano)
+- Sitemap aggiornata con le 5 pagine; footer con link interni alle pagine servizio; header/footer navigano verso home+anchor anche dalle sottopagine
+- Verificato: title IT/EN per pagina, H1 localizzati, CTA → home#preventivo funzionante
+- RICHIEDE re-publish per andare live + reinvio sitemap in Search Console
+
 ## Da completare (richiede dati dal cliente)
 - P1: URL social Instagram/Facebook/LinkedIn (ora "#")
 - P2: Dati societari (P.IVA/sede legale) da aggiungere a policy e footer quando disponibili

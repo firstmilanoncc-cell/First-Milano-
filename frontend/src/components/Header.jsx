@@ -45,6 +45,10 @@ export default function Header() {
 
   const go = (hash) => {
     setOpen(false);
+    if (window.location.pathname !== "/") {
+      window.location.href = "/" + hash;
+      return;
+    }
     scrollTo(hash);
   };
 

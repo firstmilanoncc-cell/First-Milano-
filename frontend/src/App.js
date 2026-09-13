@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import Lenis from "lenis";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "@/App.css";
-import { LanguageProvider } from "@/i18n";
+import { LanguageProvider, useLanguage, translations } from "@/i18n";
 import { Toaster } from "@/components/ui/sonner";
 import Header from "@/components/Header";
 import QuickWhatsApp from "@/components/QuickWhatsApp";
@@ -17,8 +17,20 @@ import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import PaymentPage from "@/components/PaymentPage";
 import PaymentResult from "@/components/PaymentResult";
+import ServicePage from "@/components/ServicePage";
 
 function Home() {
+  const { lang } = useLanguage();
+  useEffect(() => {
+    document.title = translations[lang].meta.title;
+    document.querySelector('meta[name="description"]')?.setAttribute("content", translations[lang].meta.description);
+    document.querySelector('link[rel="canonical"]')?.setAttribute("href", "https://firstmilanoncc.it/");
+  }, [lang]);
+  useEffect(() => {
+    if (window.location.hash) {
+      setTimeout(() => document.querySelector(window.location.hash)?.scrollIntoView(), 700);
+    }
+  }, []);
   return (
     <>
       <Header />
@@ -64,6 +76,11 @@ function App() {
             <Route path="/pagamento" element={<PaymentPage />} />
             <Route path="/pagamento/successo" element={<PaymentResult />} />
             <Route path="/pagamento/annullato" element={<PaymentResult cancelled />} />
+            <Route path="/transfer-malpensa" element={<ServicePage slug="transfer-malpensa" />} />
+            <Route path="/transfer-linate" element={<ServicePage slug="transfer-linate" />} />
+            <Route path="/transfer-orio-al-serio" element={<ServicePage slug="transfer-orio-al-serio" />} />
+            <Route path="/autista-a-disposizione" element={<ServicePage slug="autista-a-disposizione" />} />
+            <Route path="/eventi-fashion-week" element={<ServicePage slug="eventi-fashion-week" />} />
           </Routes>
         </BrowserRouter>
         <Toaster position="top-center" theme="dark" />

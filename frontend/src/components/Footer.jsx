@@ -15,6 +15,14 @@ const NAV = [
   { hash: "#contatti", key: "contatti" },
 ];
 
+const SERVICE_LINKS = [
+  { path: "/transfer-malpensa", label: "Transfer Malpensa" },
+  { path: "/transfer-linate", label: "Transfer Linate" },
+  { path: "/transfer-orio-al-serio", label: "Transfer Orio al Serio" },
+  { path: "/autista-a-disposizione", label: "Autista a Disposizione" },
+  { path: "/eventi-fashion-week", label: "Eventi & Fashion Week" },
+];
+
 const LegalModal = ({ title, body, onClose, closeLabel }) => (
   <motion.div
     initial={{ opacity: 0 }}
@@ -97,7 +105,13 @@ export default function Footer() {
                   <li key={item.hash}>
                     <button
                       data-testid={`footer-link-${item.key}`}
-                      onClick={() => scrollTo(item.hash)}
+                      onClick={() => {
+                        if (window.location.pathname !== "/") {
+                          window.location.href = "/" + item.hash;
+                          return;
+                        }
+                        scrollTo(item.hash);
+                      }}
                       className="text-[13px] tracking-[0.08em] uppercase text-sub hover:text-gold-light transition-colors duration-300"
                     >
                       {t.nav[item.key]}
@@ -107,6 +121,19 @@ export default function Footer() {
               </ul>
             ))}
           </div>
+          <ul className="mt-6 space-y-2">
+            {SERVICE_LINKS.map((s) => (
+              <li key={s.path}>
+                <a
+                  data-testid={`footer-service-${s.path.slice(1)}`}
+                  href={s.path}
+                  className="text-[12px] text-dim hover:text-gold-light transition-colors duration-300"
+                >
+                  {s.label}
+                </a>
+              </li>
+            ))}
+          </ul>
           <div className="mt-7 flex gap-3">
             {socials.map(({ id, icon: Icon, url }) => (
               <a

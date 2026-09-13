@@ -5,6 +5,7 @@ export const translations = {
     meta: {
       lang: "it",
       title: "FIRST MILANO | NCC Milano & Private Chauffeur Service",
+      description: "FIRST MILANO offre servizi NCC e private chauffeur a Milano per transfer aeroportuali, business, eventi, autista a disposizione e trasferimenti in Italia.",
     },
     nav: {
       home: "Home",
@@ -158,6 +159,7 @@ export const translations = {
     meta: {
       lang: "en",
       title: "FIRST MILANO | NCC Milan & Private Chauffeur Service",
+      description: "FIRST MILANO provides NCC and private chauffeur services in Milan for airport transfers, business, events, hourly hire and transfers across Italy.",
     },
     nav: {
       home: "Home",
@@ -315,7 +317,6 @@ export const LanguageProvider = ({ children }) => {
   const [lang, setLang] = useState("it");
   useEffect(() => {
     document.documentElement.lang = lang;
-    document.title = translations[lang].meta.title;
   }, [lang]);
   return (
     <LanguageContext.Provider value={{ lang, setLang, t: translations[lang] }}>
