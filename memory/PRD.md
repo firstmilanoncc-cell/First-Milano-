@@ -26,8 +26,13 @@ Sito one-page luxury per servizio NCC premium con base a Milano (brand: FIRST MI
 - Privacy Policy e Cookie Policy complete (IT/EN, GDPR art. 6, diritti interessato, cookie solo tecnici) in modali scorrevoli
 
 ## Aggiornamento (13/09/2026 — modulo WhatsApp rapido)
-- Nuovo modulo "Richiesta rapida via WhatsApp" (components/QuickWhatsApp.jsx): modale con campi essenziali (nome, partenza, destinazione, data, ora, passeggeri, note) che apre wa.me con messaggio strutturato
+- Nuovo modulo "Richiesta rapida via WhatsApp" (components/QuickWhatsApp.jsx): modale con campi essenziali (nome, tipologia servizio, partenza, destinazione, data, ora, passeggeri, note) che apre wa.me con messaggio strutturato
 - Trigger: pulsante WhatsApp flottante e CTA hero "Contattaci su WhatsApp". Verificato: popup wa.me verso 393334220189 con testo compilato correttamente
+
+## Aggiornamento (13/09/2026 — autocomplete indirizzi)
+- Nuovo componente AddressInput.jsx (Photon photon.komoot.io, no API key, debounce 300ms, min 3 caratteri, bias Milano, countrycode IT; NOTA: lang=it NON supportato da Photon, ometterlo)
+- Integrato in entrambi i moduli (WhatsApp rapido + preventivo email) su partenza/destinazione; inserimento manuale sempre consentito
+- Verificato: "Malpensa aeroporto" → suggerimenti T1/T2; "Milano Centrale" → Piazza Duca d'Aosta
 
 ## Da completare (richiede dati dal cliente)
 - P1: URL social Instagram/Facebook/LinkedIn (ora "#")

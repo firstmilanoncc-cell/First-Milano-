@@ -3,6 +3,7 @@ import { toast } from "sonner";
 import { useLanguage } from "@/i18n";
 import { Reveal, Eyebrow } from "@/components/Reveal";
 import { CONTACTS } from "@/config";
+import AddressInput from "@/components/AddressInput";
 
 const EMPTY = {
   name: "", phone: "", email: "", pickup: "", destination: "",
@@ -30,6 +31,7 @@ export default function QuoteForm() {
     const v = e.target.type === "checkbox" ? e.target.checked : e.target.value;
     setForm((f) => ({ ...f, [k]: v }));
   };
+  const setAddr = (k) => (v) => setForm((f) => ({ ...f, [k]: v }));
 
   const buildWhatsAppMessage = () => [
     q.waIntro,
@@ -106,10 +108,10 @@ export default function QuoteForm() {
               </select>
             </Field>
             <Field label={q.pickup} htmlFor="q-pickup">
-              <input id="q-pickup" data-testid="quote-input-pickup" required className={inputCls} value={form.pickup} onChange={set("pickup")} />
+              <AddressInput id="q-pickup" testId="quote-input-pickup" required className={inputCls} value={form.pickup} onChange={setAddr("pickup")} />
             </Field>
             <Field label={q.destination} htmlFor="q-destination">
-              <input id="q-destination" data-testid="quote-input-destination" required className={inputCls} value={form.destination} onChange={set("destination")} />
+              <AddressInput id="q-destination" testId="quote-input-destination" required className={inputCls} value={form.destination} onChange={setAddr("destination")} />
             </Field>
             <Field label={q.date} htmlFor="q-date">
               <input id="q-date" data-testid="quote-input-date" required type="date" className={inputCls} value={form.date} onChange={set("date")} />
@@ -128,6 +130,7 @@ export default function QuoteForm() {
                 <textarea id="q-notes" data-testid="quote-input-notes" rows={3} className={inputCls} value={form.notes} onChange={set("notes")} />
               </Field>
             </div>
+            <p className="sm:col-span-2 text-[10px] text-dim">{q.geoAttribution}</p>
             <label data-testid="quote-privacy-label" className="sm:col-span-2 flex items-start gap-3 cursor-pointer group">
               <input
                 data-testid="quote-privacy-checkbox"

@@ -116,6 +116,7 @@ export const translations = {
       errorToast: "Errore durante l'invio. Puoi comunque contattarci su WhatsApp.",
       privacyError: "È necessario accettare la Privacy Policy.",
       waIntro: "Nuova richiesta preventivo — FIRST MILANO",
+      geoAttribution: "Suggerimenti indirizzi: © OpenStreetMap contributors / Photon",
     },
     waForm: {
       title: "Richiesta rapida via WhatsApp",
@@ -272,6 +273,7 @@ export const translations = {
       errorToast: "Error while sending. You can still reach us on WhatsApp.",
       privacyError: "Please accept the Privacy Policy.",
       waIntro: "New quote request — FIRST MILANO",
+      geoAttribution: "Address suggestions: © OpenStreetMap contributors / Photon",
     },
     waForm: {
       title: "Quick request via WhatsApp",

@@ -3,8 +3,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { useLanguage } from "@/i18n";
 import { CONTACTS } from "@/config";
+import AddressInput from "@/components/AddressInput";
 
-const EMPTY = { name: "", from: "", to: "", date: "", time: "", passengers: 1, notes: "" };
+const EMPTY = { name: "", from: "", to: "", date: "", time: "", passengers: 1, service: "", notes: "" };
 
 const inputCls =
   "w-full bg-obsidian border border-white/10 focus:border-gold/60 px-4 py-3 text-sm text-ivory outline-none transition-colors duration-300 placeholder:text-dim rounded-none";
@@ -14,6 +15,7 @@ export const openWhatsAppForm = () => window.dispatchEvent(new CustomEvent("open
 export default function QuickWhatsApp() {
   const { t } = useLanguage();
   const w = t.waForm;
+  const q = t.quote;
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState(EMPTY);
 
@@ -24,12 +26,14 @@ export default function QuickWhatsApp() {
   }, []);
 
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
+  const setAddr = (k) => (v) => setForm((f) => ({ ...f, [k]: v }));
 
   const submit = (e) => {
     e.preventDefault();
     const msg = [
       w.waIntro,
       `${w.name}: ${form.name}`,
+      `${q.serviceType}: ${form.service}`,
       `${w.from}: ${form.from}`,
       `${w.to}: ${form.to}`,
       `${w.date}: ${form.date} — ${w.time}: ${form.time}`,
@@ -76,12 +80,19 @@ export default function QuickWhatsApp() {
 
             <form data-testid="wa-quick-form" onSubmit={submit} className="mt-6 grid grid-cols-2 gap-4">
               <input data-testid="wa-input-name" required placeholder={w.name} className={`${inputCls} col-span-2`} value={form.name} onChange={set("name")} />
-              <input data-testid="wa-input-from" required placeholder={w.from} className={inputCls} value={form.from} onChange={set("from")} />
-              <input data-testid="wa-input-to" required placeholder={w.to} className={inputCls} value={form.to} onChange={set("to")} />
+              <select data-testid="wa-select-service" required className={`${inputCls} col-span-2`} value={form.service} onChange={set("service")}>
+                <option value="" disabled>{q.selectPlaceholder}</option>
+                {q.services.map((s) => (
+                  <option key={s} value={s}>{s}</option>
+                ))}
+              </select>
+              <AddressInput id="wa-from" testId="wa-input-from" required placeholder={w.from} className={inputCls} value={form.from} onChange={setAddr("from")} />
+              <AddressInput id="wa-to" testId="wa-input-to" required placeholder={w.to} className={inputCls} value={form.to} onChange={setAddr("to")} />
               <input data-testid="wa-input-date" required type="date" className={inputCls} value={form.date} onChange={set("date")} />
               <input data-testid="wa-input-time" required type="time" className={inputCls} value={form.time} onChange={set("time")} />
               <input data-testid="wa-input-passengers" type="number" min="1" max="8" placeholder={w.passengers} className={inputCls} value={form.passengers} onChange={set("passengers")} />
               <input data-testid="wa-input-notes" placeholder={w.notes} className={inputCls} value={form.notes} onChange={set("notes")} />
+              <p className="col-span-2 text-[10px] text-dim">{t.quote.geoAttribution}</p>
               <button
                 data-testid="wa-form-submit"
                 type="submit"
