@@ -1,0 +1,204 @@
+{
+  "brand": {
+    "name": "FIRST MILANO",
+    "subtitle": "Private Chauffeur Service",
+    "tagline": "Eleganza, puntualità e discrezione.",
+    "location": "Milano, Italia",
+    "positioning": "High-end European private chauffeur and NCC service in Milan with optional personal security integration."
+  },
+  "theme": {
+    "mode": "dark",
+    "style": "Contemporary High-End European Luxury Chauffeur (Maison de Lysenne / Monaco Royal Limousines visual tier)"
+  },
+  "colors": {
+    "background_primary": "#0B0C0E",
+    "background_secondary": "#141619",
+    "background_elevated": "#1C1F24",
+    "background_glass": "rgba(18, 20, 24, 0.85)",
+    "border_subtle": "rgba(212, 175, 55, 0.15)",
+    "border_medium": "rgba(212, 175, 55, 0.35)",
+    "border_highlight": "#D4AF37",
+    "accent_gold": "#D4AF37",
+    "accent_gold_hover": "#E5C158",
+    "accent_gold_muted": "rgba(212, 175, 55, 0.1)",
+    "text_primary": "#F5F4F0",
+    "text_secondary": "#A1A8B3",
+    "text_gold": "#E5C158",
+    "text_muted": "#6E7582",
+    "status_whatsapp": "#25D366",
+    "status_whatsapp_hover": "#20BA5A",
+    "css_variables": {
+      "--bg-main": "#0B0C0E",
+      "--bg-card": "#141619",
+      "--bg-glass": "rgba(18, 20, 24, 0.85)",
+      "--accent-gold": "#D4AF37",
+      "--accent-gold-light": "#E5C158",
+      "--text-main": "#F5F4F0",
+      "--text-sub": "#A1A8B3",
+      "--border-gold": "rgba(212, 175, 55, 0.25)"
+    }
+  },
+  "typography": {
+    "display_font": {
+      "name": "Cormorant Garamond / Cinzel / Playfair Display",
+      "font_family": "'Cormorant Garamond', 'Cinzel', 'Playfair Display', Georgia, serif",
+      "google_font_import": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap",
+      "usage": "Main Brand Logo, Hero Headings, Section Titles, Numbered Manifesto Titles"
+    },
+    "body_font": {
+      "name": "Plus Jakarta Sans",
+      "font_family": "'Plus Jakarta Sans', system-ui, -apple-system, sans-serif",
+      "usage": "Body narrative, service descriptions, menu links, buttons, form controls, specs"
+    },
+    "scale": {
+      "h1_hero": "text-4xl sm:text-5xl lg:text-6xl tracking-tight font-serif uppercase",
+      "h2_section": "text-2xl sm:text-3xl lg:text-4xl tracking-tight font-serif",
+      "h3_card": "text-xl sm:text-2xl font-serif text-white",
+      "eyebrow": "text-xs uppercase tracking-[0.25em] text-[#D4AF37] font-sans font-semibold",
+      "body_lg": "text-base sm:text-lg text-[#A1A8B3] leading-relaxed",
+      "body_sm": "text-xs sm:text-sm text-[#A1A8B3]"
+    }
+  },
+  "layout_and_spacing": {
+    "container": "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+    "section_padding": "py-20 lg:py-32",
+    "grid_bento": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8",
+    "card_padding": "p-6 sm:p-8 lg:p-10",
+    "border_radius": "rounded-none or rounded-sm (sharp luxury aesthetic, max 4px for elements)"
+  },
+  "motion_and_effects": {
+    "smooth_scroll": "Lenis momentum smooth scroll mandatory across page",
+    "scroll_reveal": "Framer motion staggered opacity & translate-y (duration 0.7s, ease: [0.25, 1, 0.5, 1])",
+    "hero_reveal": "Line-by-line masked kinetic text reveal on load",
+    "glassmorphism": "backdrop-blur-xl bg-[#121418]/85 border border-[#D4AF37]/20 shadow-2xl",
+    "hover_states": "Border transition to #D4AF37, slight dark lift, button fill expansion"
+  },
+  "image_urls": {
+    "hero_background": "https://images.unsplash.com/photo-1657442754131-c14c46b8e38e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODh8MHwxfHNlYXJjaHwxfHxtaWxhbiUyMGR1b21vJTIwZHVzayUyMGJsYWNrJTIwbWVyY2VkZXMlMjBsdXh1cnklMjBjYXIlMjBjaGF1ZmZldXJ8ZW58MHx8fHwxNzg5Mjg3Njg5fDA&ixlib=rb-4.1.0&q=85",
+    "milan_night_street": "https://images.unsplash.com/photo-1628541497044-56ddca605a9b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODh8MHwxfHNlYXJjaHwzfHxtaWxhbiUyMGR1b21vJTIwZHVzayUyMGJsYWNrJTIwbWVyY2VkZXMlMjBsdXh1cnklMjBjYXIlMjBjaGF1ZmZldXJ8ZW58MHx8fHwxNzg5Mjg3Njg5fDA&ixlib=rb-4.1.0&q=85",
+    "fleet_sedan": "https://images.unsplash.com/photo-1642951321372-6440de3662fe?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODh8MHwxfHNlYXJjaHwxfHxibGFjayUyMG1lcmNlZGVzJTIwc2VkYW4lMjBsdXh1cnklMjBuaWdodCUyMGNpdHklMjBkcml2ZXxlbnwwfHx8fDE3ODkyODc2OTZ8MA&ixlib=rb-4.1.0&q=85",
+    "fleet_van": "https://images.unsplash.com/photo-1580224292298-66966d5d0c2e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODh8MHwxfHNlYXJjaHwyfHxibGFjayUyMG1lcmNlZGVzJTIwc2VkYW4lMjBsdXh1cnklMjBuaWdodCUyMGNpdHklMjBkcml2ZXxlbnwwfHx8fDE3ODkyODc2OTZ8MA&ixlib=rb-4.1.0&q=85",
+    "chauffeur_bodyguard": "https://images.unsplash.com/photo-1558222209-134191edfe0d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1MTN8MHwxfHNlYXJjaHwyfHxsdXh1cnklMjBwcml2YXRlJTIwY2hhdWZmZXVyJTIwYm9keWd1YXJkJTIwc3VpdCUyMGJsYWNrJTIwY2FyfGVufDB8fHx8MTc4OTI4NzY5Nnww&ixlib=rb-4.1.0&q=85",
+    "bodyguard_detail": "https://images.unsplash.com/photo-1603122101829-e56305b0a5f7?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1MTN8MHwxfHNlYXJjaHwzfHxsdXh1cnklMjBwcml2YXRlJTIwY2hhdWZmZXVyJTIwYm9keWd1YXJkJTIwc3VpdCUyMGJsYWNrJTIwY2FyfGVufDB8fHx8MTc4OTI4NzY5Nnww&ixlib=rb-4.1.0&q=85"
+  },
+  "sections_breakdown": [
+    {
+      "section_id": "header",
+      "title": "Sticky Transforming Header",
+      "requirements": [
+        "Position: fixed top-0 w-full z-50",
+        "Initial state: backdrop-blur-md bg-[#0B0C0E]/70 border-b border-[#D4AF37]/10",
+        "Scrolled state: bg-[#0B0C0E]/95 backdrop-blur-xl border-b border-[#D4AF37]/30 shadow-2xl transition-all duration-300",
+        "Left: Brand logo with serif font 'FIRST MILANO' and gold subtitle 'Private Chauffeur Service'",
+        "Center: Anchored links (Home, Servizi, Flotta, Transfer Aeroporti, NCC con Guardia, Chi Siamo, Contatti)",
+        "Right: Language Switcher (IT / EN toggle) + Gold CTA 'RICHIEDI PREVENTIVO'",
+        "Mobile: Sleek slide-over dark drawer menu with champagne gold accents",
+        "Crucial: Header MUST NEVER be fully transparent to preserve contrast!"
+      ]
+    },
+    {
+      "section_id": "hero",
+      "title": "Cinematic Milan Hero",
+      "requirements": [
+        "Full height background image with dark linear gradient overlay (from-black/80 via-black/50 to-[#0B0C0E])",
+        "Eyebrow: 'NOLEGGIO CON CONDUCENTE A MILANO'",
+        "H1: 'FIRST MILANO — PRIVATE CHAUFFEUR SERVICE'",
+        "Tagline: 'Eleganza, puntualità e discrezione.'",
+        "Description paragraph emphasizing luxury transfer, airport service, business events in Milan & Italy",
+        "CTAs: Primary gold button ('RICHIEDI UN PREVENTIVO'), Secondary outline gold button with WhatsApp icon ('CONTATTACI SU WHATSAPP')",
+        "Bottom Bar: 4 feature pills with icons (Aeroporti Malpensa / Linate / Orio; Autisti Professionali; Disponibilità su prenotazione; Milano & Italia)"
+      ]
+    },
+    {
+      "section_id": "servizi",
+      "title": "Servizi Premium (6 Cards Grid)",
+      "requirements": [
+        "Grid of 6 interactive dark cards with subtle gold line hover effect",
+        "1. Transfer Aeroportuali (Malpensa, Linate, Orio al Serio, jet privati)",
+        "2. Business & Corporate (Meeting, roadshow, delegazioni aziendali)",
+        "3. Autista a Disposizione (Servizio orario su misura per shopping e impegni)",
+        "4. Eventi & Fashion Week (Milano Moda, Salone del Mobile, gala)",
+        "5. Viaggi & Lunghe Percorrenze (Trasferimenti in tutta Italia ed Europa)",
+        "6. NCC con Guardia del Corpo (Servizio combinato chauffeur + executive protection)"
+      ]
+    },
+    {
+      "section_id": "flotta",
+      "title": "La Flotta (Luxury Mercedes Showcase)",
+      "requirements": [
+        "Dark contrast section (#141619 background) showcasing 2 main luxury categories",
+        "Card 1: Berline di Lusso (Mercedes-Benz Classe S / Classe E) - Comfort supremo, privacy glass, Wi-Fi a bordo, acqua per gli ospiti",
+        "Card 2: Van di Lusso (Mercedes-Benz Classe V Extra Long) - Fino a 7 passeggeri, salotto di bordo, ampi bagagli, finiture in pelle",
+        "Interactive spec list (Passeggeri, Bagagli, Wi-Fi, Acqua, Sedili in pelle, POS a bordo)"
+      ]
+    },
+    {
+      "section_id": "aeroporti",
+      "title": "Transfer Aeroportuali Dedicated Hub",
+      "requirements": [
+        "Dedicated visual section for Milan airports: Milano Malpensa (MXP), Milano Linate (LIN), Bergamo Orio al Serio (BGY), Aviopista Jet Privati",
+        "Flight tracking system highlight: Monitoraggio voli in tempo reale e accoglienza al gate con cartello personalizzato",
+        "Direct CTA: 'RICHIEDI TRANSFER AEROPORTO'"
+      ]
+    },
+    {
+      "section_id": "guardia-del-corpo",
+      "title": "NCC con Guardia del Corpo (Premium Protection Add-on)",
+      "requirements": [
+        "Subtle, elegant dark presentation — NO aggressive security branding, strictly executive protection & discretion",
+        "Professional chauffeur/guard in dark tailored suit near luxury vehicle",
+        "Key points: Protezione discreta, personale qualificato, massima riservatezza per VIP, VIP transfer con scorta personalizzata",
+        "CTA: 'RICHIEDI INFORMAZIONI PROTEZIONE'"
+      ]
+    },
+    {
+      "section_id": "perche-noi",
+      "title": "Perché FIRST MILANO (4 Chapter Manifesto)",
+      "requirements": [
+        "Numbered chapter layout (01 Puntualità Impeccabile, 02 Massimo Controllo e Discrezione, 03 Standard Esecutivo e Comfort, 04 Servizio Su Misura 24/7)"
+      ]
+    },
+    {
+      "section_id": "preventivo",
+      "title": "Modulo Richiesta Preventivo (WhatsApp + Email dispatch)",
+      "requirements": [
+        "Conversion engine form featuring fields: Nome e Cognome, Telefono / WhatsApp, Email, Indirizzo Partenza, Indirizzo Destinazione, Data e Ora, Passeggeri, Bagagli, Tipologia Servizio (Select), Note aggiuntive, Checkbox Privacy Policy",
+        "Submits to backend FastAPI endpoint + generates pre-filled WhatsApp link with full itinerary breakdown!",
+        "Sonner toast notification on submission success"
+      ]
+    },
+    {
+      "section_id": "contatti",
+      "title": "Contatti & Sede Operativa",
+      "requirements": [
+        "Operational headquarters in Milano",
+        "Phone / WhatsApp direct contact button",
+        "Email support link",
+        "Availability notice: Disponibile 24 ore su 24, 7 giorni su 7 su prenotazione"
+      ]
+    },
+    {
+      "section_id": "floating-whatsapp",
+      "title": "Floating WhatsApp Button",
+      "requirements": [
+        "Fixed bottom-6 right-6 z-40 button with WhatsApp brand color (#25D366) and glowing pulse effect"
+      ]
+    }
+  ],
+  "i18n": {
+    "supported_languages": ["it", "en"],
+    "default_language": "it",
+    "requirement": "Complete bidirectional translation switcher state supporting all text content on the site"
+  },
+  "testing_and_accessibility": {
+    "mandatory_data_testid": "All interactive buttons, links, inputs, selects, cards, and language toggles MUST have descriptive data-testid attributes (e.g., data-testid='nav-preventivo-button', data-testid='quote-form-submit', data-testid='lang-switcher-en').",
+    "contrast_check": "Ensure gold text on dark background meets WCAG contrast ratios."
+  },
+  "instructions_to_main_agent": [
+    "Follow this exact JSON structure and guidelines when building the React frontend.",
+    "Ensure Lenis smooth scrolling and Framer Motion reveals are properly initialized.",
+    "Never drop or omit data-testid attributes on any element.",
+    "Do not use transparent header; always use glassmorphism with dark background tint.",
+    "Keep Javascript file extension standard (.js / .jsx) as defined in the template."
+  ]
+}
