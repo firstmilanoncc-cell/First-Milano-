@@ -71,6 +71,11 @@ Sito one-page luxury per servizio NCC premium con base a Milano (brand: FIRST MI
 - Verificato: title IT/EN per pagina, H1 localizzati, CTA → home#preventivo funzionante
 - RICHIEDE re-publish per andare live + reinvio sitemap in Search Console
 
+## Aggiornamento (14/09/2026 — immagini più luminose + pacchetto Google Ads)
+- Overlay e brightness alleggeriti due volte su hero/flotta/pannelli/pagine servizio (brightness 1.2, gradienti ridotti)
+- Asset pubblicitari in /app/ad-assets/ (6 immagini brandizzate 1200x628 e 1200x1200 con Cormorant/Jakarta) + CAMPAGNA_GOOGLE_ADS.md con 5 gruppi RSA (titoli ≤30 car., descrizioni ≤90), keyword, negative, sitelink e piano budget 4 settimane
+- DA FARE: tag conversione Google Ads (clic WhatsApp + invio form) prima dell'attivazione campagne
+
 ## Da completare (richiede dati dal cliente)
 - P1: URL social Instagram/Facebook/LinkedIn (ora "#")
 - P2: Dati societari (P.IVA/sede legale) da aggiungere a policy e footer quando disponibili
