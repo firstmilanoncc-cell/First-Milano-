@@ -14,9 +14,9 @@ const Panel = ({ id, image, icon: Icon, eyebrow, title, text, note, cta, testId 
       src={image}
       alt={title}
       loading="lazy"
-      className="absolute inset-0 w-full h-full object-cover brightness-[1.08] transition-transform duration-[1.4s] ease-out group-hover:scale-105"
+      className="absolute inset-0 w-full h-full object-cover brightness-[1.2] transition-transform duration-[1.4s] ease-out group-hover:scale-105"
     />
-    <div className="absolute inset-0 bg-gradient-to-t from-obsidian/95 via-obsidian/25 to-transparent" />
+    <div className="absolute inset-0 bg-gradient-to-t from-obsidian/90 via-obsidian/15 to-transparent" />
     <div className="relative p-8 sm:p-10 lg:p-14">
       {eyebrow && (
         <p className="text-[10px] uppercase tracking-[0.3em] text-gold font-semibold mb-4">{eyebrow}</p>

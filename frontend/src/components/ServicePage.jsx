@@ -36,8 +36,8 @@ export default function ServicePage({ slug }) {
       <Header />
       <main>
         <section className="relative min-h-[52vh] flex items-end overflow-hidden">
-          <img src={page.image} alt={c.h1} className="absolute inset-0 w-full h-full object-cover brightness-[1.08]" />
-          <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/30 to-obsidian/40" />
+          <img src={page.image} alt={c.h1} className="absolute inset-0 w-full h-full object-cover brightness-[1.2]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/20 to-obsidian/30" />
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-32 pb-12">
             <motion.button
               initial={{ opacity: 0 }}
