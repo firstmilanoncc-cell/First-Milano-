@@ -76,6 +76,11 @@ Sito one-page luxury per servizio NCC premium con base a Milano (brand: FIRST MI
 - Asset pubblicitari in /app/ad-assets/ (6 immagini brandizzate 1200x628 e 1200x1200 con Cormorant/Jakarta) + CAMPAGNA_GOOGLE_ADS.md con 5 gruppi RSA (titoli ≤30 car., descrizioni ≤90), keyword, negative, sitelink e piano budget 4 settimane
 - DA FARE: tag conversione Google Ads (clic WhatsApp + invio form) prima dell'attivazione campagne
 
+## Aggiornamento (14/09/2026 — immagini pubblicitarie generate AI)
+- 6 immagini generate con Gemini Nano Banana (chiave universale, crediti utente): NCC/Duomo, transfer aeroporto, autista a disposizione (Via Monte Napoleone), eventi/palazzo con red carpet, business (Porta Nuova), lunga percorrenza (Lago di Como)
+- Raw in /app/ad-assets/raw_gen_*.png; finali brandizzate (logo + oro + payoff, Cormorant/Jakarta in /app/ad-assets/fonts/): new_*_1200x628.jpg e new_*_1200x1200.jpg — 12 file totali
+- Script rigenerazione: /app/scripts/gen_ad_images.py
+
 ## Da completare (richiede dati dal cliente)
 - P1: URL social Instagram/Facebook/LinkedIn (ora "#")
 - P2: Dati societari (P.IVA/sede legale) da aggiungere a policy e footer quando disponibili
