@@ -34,11 +34,11 @@ export default function Hero() {
         <img
           src={IMAGES.hero}
           alt="Piazza del Duomo di Milano di sera con Mercedes nera e autista professionale"
-          className="w-full h-[106%] object-cover object-[64%_center] lg:object-[center_35%]"
+          className="w-full h-[106%] object-cover object-[64%_center] lg:object-[center_35%] brightness-[1.08]"
           loading="eager"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-obsidian/75 via-obsidian/40 to-obsidian/90 lg:bg-gradient-to-r lg:from-obsidian/90 lg:via-obsidian/45 lg:to-obsidian/10" />
-        <div className="hidden lg:block absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-obsidian/40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-obsidian/55 via-obsidian/25 to-obsidian/75 lg:bg-gradient-to-r lg:from-obsidian/75 lg:via-obsidian/30 lg:to-transparent" />
+        <div className="hidden lg:block absolute inset-0 bg-gradient-to-t from-obsidian/80 via-transparent to-obsidian/25" />
       </motion.div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 w-full flex-1 flex flex-col justify-center pt-24 pb-10 lg:pt-44 lg:pb-20">

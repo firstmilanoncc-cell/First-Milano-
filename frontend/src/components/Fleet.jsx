@@ -10,9 +10,9 @@ const FleetCard = ({ data, image, testId, delay }) => (
         src={image}
         alt={data.label}
         loading="lazy"
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-105"
+        className="absolute inset-0 w-full h-full object-cover brightness-[1.08] transition-transform duration-[1.4s] ease-out group-hover:scale-105"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/25 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-obsidian/90 via-obsidian/15 to-transparent" />
       <div className="absolute inset-x-0 bottom-0 p-7 sm:p-9 lg:p-11">
         <h3 className="font-serif text-3xl sm:text-4xl text-ivory">{data.label}</h3>
         <p className="mt-2 text-[11px] uppercase tracking-[0.28em] text-gold font-semibold">{data.model}</p>
