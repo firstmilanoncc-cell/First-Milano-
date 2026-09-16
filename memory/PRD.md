@@ -90,6 +90,11 @@ Sito one-page luxury per servizio NCC premium con base a Milano (brand: FIRST MI
 - GA4 G-22NMGM3J1F installato in index.html; Cookie Policy aggiornata con sezione Analytics (IT/EN)
 - Asset ads scaricabili anche via /ads/ in public (richiede re-publish)
 
+## Aggiornamento (16/09/2026 — video commerciale)
+- Video 7s 720p generato con Seedance 1.0 Pro (image-to-video via Fal/Universal Key; Seedance 2.0 non presente nel catalogo): Malpensa Arrivi al tramonto, autista apre la porta scorrevole del V-Class, cliente con trolley, end card FIRST MILANO (overlay PIL+ffmpeg, drawtext non disponibile nel build ffmpeg → overlay PNG)
+- Immagine di riferimento: /app/frontend/public/ads/ref_malpensa_van.png (Gemini); video: /app/frontend/public/ads/commercial_malpensa_7s.mp4 (grezzo 10s tagliato a 7s, 24fps, 1248x704)
+- Script: /app/scripts/gen_video_commercial.py (ATTENZIONE: poll senza retry su timeout — il job Fal continua anche se il poll cade; non risottomettere, riprendere lo status_url)
+
 ## Da completare (richiede dati dal cliente)
 - P1: URL social Instagram/Facebook/LinkedIn (ora "#")
 - P2: Dati societari (P.IVA/sede legale) da aggiungere a policy e footer quando disponibili
