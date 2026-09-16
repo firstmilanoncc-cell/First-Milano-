@@ -95,6 +95,10 @@ Sito one-page luxury per servizio NCC premium con base a Milano (brand: FIRST MI
 - Immagine di riferimento: /app/frontend/public/ads/ref_malpensa_van.png (Gemini); video: /app/frontend/public/ads/commercial_malpensa_7s.mp4 (grezzo 10s tagliato a 7s, 24fps, 1248x704)
 - Script: /app/scripts/gen_video_commercial.py (ATTENZIONE: poll senza retry su timeout — il job Fal continua anche se il poll cade; non risottomettere, riprendere lo status_url)
 
+## Aggiornamento (16/09/2026 — pagina conversione /grazie)
+- Nuova pagina /grazie (ThankYou.jsx, noindex): modulo preventivo ora reindirizza lì dopo l'invio (non apre più WhatsApp automaticamente; la pagina offre il pulsante WhatsApp rapido)
+- URL conversione per Google Ads: https://firstmilanoncc.it/grazie (richiede re-publish)
+
 ## Da completare (richiede dati dal cliente)
 - P1: URL social Instagram/Facebook/LinkedIn (ora "#")
 - P2: Dati societari (P.IVA/sede legale) da aggiungere a policy e footer quando disponibili

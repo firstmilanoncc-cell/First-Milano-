@@ -1,8 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { useLanguage } from "@/i18n";
 import { Reveal, Eyebrow } from "@/components/Reveal";
-import { CONTACTS } from "@/config";
 import AddressInput from "@/components/AddressInput";
 
 const EMPTY = {
@@ -24,6 +24,7 @@ const Field = ({ label, htmlFor, children }) => (
 
 export default function QuoteForm() {
   const { lang, t } = useLanguage();
+  const navigate = useNavigate();
   const q = t.quote;
   const [form, setForm] = useState(EMPTY);
   const [sending, setSending] = useState(false);
@@ -32,19 +33,6 @@ export default function QuoteForm() {
     setForm((f) => ({ ...f, [k]: v }));
   };
   const setAddr = (k) => (v) => setForm((f) => ({ ...f, [k]: v }));
-
-  const buildWhatsAppMessage = () => [
-    q.waIntro,
-    `${q.name}: ${form.name}`,
-    `${q.phone}: ${form.phone}`,
-    `${q.email}: ${form.email}`,
-    `${q.serviceType}: ${form.service_type}`,
-    `${q.pickup}: ${form.pickup}`,
-    `${q.destination}: ${form.destination}`,
-    `${q.date}: ${form.date} — ${q.time}: ${form.time}`,
-    `${q.passengers}: ${form.passengers} — ${q.luggage}: ${form.luggage}`,
-    form.notes ? `${q.notes}: ${form.notes}` : null,
-  ].filter(Boolean).join("\n");
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -64,10 +52,8 @@ export default function QuoteForm() {
     } catch (err) {
       ok = false;
     }
-    window.open(`https://wa.me/${CONTACTS.whatsappNumber}?text=${encodeURIComponent(buildWhatsAppMessage())}`, "_blank");
     if (ok) {
-      toast.success(q.successToast);
-      setForm(EMPTY);
+      navigate("/grazie");
     } else {
       toast.error(q.errorToast);
     }

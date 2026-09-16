@@ -17,6 +17,7 @@ import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import PaymentPage from "@/components/PaymentPage";
 import PaymentResult from "@/components/PaymentResult";
+import ThankYou from "@/components/ThankYou";
 import ServicePage from "@/components/ServicePage";
 
 function Home() {
@@ -76,6 +77,7 @@ function App() {
             <Route path="/pagamento" element={<PaymentPage />} />
             <Route path="/pagamento/successo" element={<PaymentResult />} />
             <Route path="/pagamento/annullato" element={<PaymentResult cancelled />} />
+            <Route path="/grazie" element={<ThankYou />} />
             <Route path="/transfer-malpensa" element={<ServicePage slug="transfer-malpensa" />} />
             <Route path="/transfer-linate" element={<ServicePage slug="transfer-linate" />} />
             <Route path="/transfer-orio-al-serio" element={<ServicePage slug="transfer-orio-al-serio" />} />
