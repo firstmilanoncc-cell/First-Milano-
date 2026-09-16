@@ -37,7 +37,7 @@ export default function Hero() {
           className="w-full h-[106%] object-cover object-[64%_center] lg:object-[center_35%] brightness-[1.22]"
           loading="eager"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-obsidian/40 via-obsidian/10 to-obsidian/60 lg:bg-gradient-to-r lg:from-obsidian/60 lg:via-obsidian/20 lg:to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-obsidian/45 via-obsidian/20 to-obsidian/65 lg:bg-gradient-to-r lg:from-obsidian/60 lg:via-obsidian/20 lg:to-transparent" />
         <div className="hidden lg:block absolute inset-0 bg-gradient-to-t from-obsidian/60 via-transparent to-obsidian/15" />
       </motion.div>
 

@@ -5,7 +5,7 @@ import { Lock, Copy, MessageCircle, RefreshCw, CreditCard } from "lucide-react";
 const API = process.env.REACT_APP_BACKEND_URL;
 
 const inputCls =
-  "w-full bg-obsidian border border-white/10 focus:border-gold/60 px-4 py-3 text-sm text-ivory outline-none transition-colors duration-300 placeholder:text-dim rounded-none";
+  "w-full bg-obsidian border border-white/10 focus:border-gold/60 px-4 py-3 text-base sm:text-sm text-ivory outline-none transition-colors duration-300 placeholder:text-dim rounded-none";
 
 const STATUS_LABELS = {
   pending: { label: "In attesa", cls: "text-gold border-gold/40" },

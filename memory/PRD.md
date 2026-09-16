@@ -81,6 +81,15 @@ Sito one-page luxury per servizio NCC premium con base a Milano (brand: FIRST MI
 - Raw in /app/ad-assets/raw_gen_*.png; finali brandizzate (logo + oro + payoff, Cormorant/Jakarta in /app/ad-assets/fonts/): new_*_1200x628.jpg e new_*_1200x1200.jpg — 12 file totali
 - Script rigenerazione: /app/scripts/gen_ad_images.py
 
+## Aggiornamento (16/09/2026 — ottimizzazione mobile)
+- FAB WhatsApp ora appare solo dopo 350px di scroll (non copre più hero e feature strip al caricamento)
+- Input dei moduli a 16px su mobile (text-base, sm:text-sm) per evitare l'auto-zoom di iOS al tocco
+- Overlay hero mobile leggermente rinforzato (via /20) per leggibilità su foto schiarita
+- Footer: padding bottom extra su mobile per non finire sotto il FAB
+- Verificato a 390px: nessun overflow orizzontale, FAB 0→1 allo scroll, input 16px, footer libero
+- GA4 G-22NMGM3J1F installato in index.html; Cookie Policy aggiornata con sezione Analytics (IT/EN)
+- Asset ads scaricabili anche via /ads/ in public (richiede re-publish)
+
 ## Da completare (richiede dati dal cliente)
 - P1: URL social Instagram/Facebook/LinkedIn (ora "#")
 - P2: Dati societari (P.IVA/sede legale) da aggiungere a policy e footer quando disponibili

@@ -8,7 +8,7 @@ import AddressInput from "@/components/AddressInput";
 const EMPTY = { name: "", from: "", to: "", date: "", time: "", passengers: 1, service: "", notes: "" };
 
 const inputCls =
-  "w-full bg-obsidian border border-white/10 focus:border-gold/60 px-4 py-3 text-sm text-ivory outline-none transition-colors duration-300 placeholder:text-dim rounded-none";
+  "w-full bg-obsidian border border-white/10 focus:border-gold/60 px-4 py-3 text-base sm:text-sm text-ivory outline-none transition-colors duration-300 placeholder:text-dim rounded-none";
 
 export const openWhatsAppForm = () => window.dispatchEvent(new CustomEvent("open-wa-form"));
 

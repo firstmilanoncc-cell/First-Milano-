@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { openWhatsAppForm } from "@/components/QuickWhatsApp";
 
 export const WhatsAppIcon = () => (
@@ -8,20 +9,34 @@ export const WhatsAppIcon = () => (
 );
 
 export default function FloatingWhatsApp() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 350);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <motion.button
-      data-testid="floating-whatsapp-button"
-      onClick={openWhatsAppForm}
-      aria-label="WhatsApp"
-      initial={{ opacity: 0, scale: 0.6 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ delay: 2, duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
-      className="fixed bottom-5 right-5 z-40 group"
-    >
-      <span className="absolute inset-0 rounded-full bg-[#25D366]/40 animate-ping" style={{ animationDuration: "2.5s" }} />
-      <span className="relative flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] text-white shadow-2xl shadow-black/50 transition-transform duration-300 group-hover:scale-110">
-        <WhatsAppIcon />
-      </span>
-    </motion.button>
+    <AnimatePresence>
+      {visible && (
+        <motion.button
+          data-testid="floating-whatsapp-button"
+          onClick={openWhatsAppForm}
+          aria-label="WhatsApp"
+          initial={{ opacity: 0, scale: 0.6 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.6 }}
+          transition={{ duration: 0.35, ease: [0.25, 1, 0.5, 1] }}
+          className="fixed bottom-5 right-5 z-40 group"
+        >
+          <span className="absolute inset-0 rounded-full bg-[#25D366]/40 animate-ping" style={{ animationDuration: "2.5s" }} />
+          <span className="relative flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] text-white shadow-2xl shadow-black/50 transition-transform duration-300 group-hover:scale-110">
+            <WhatsAppIcon />
+          </span>
+        </motion.button>
+      )}
+    </AnimatePresence>
   );
 }

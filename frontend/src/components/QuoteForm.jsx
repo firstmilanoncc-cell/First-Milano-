@@ -11,7 +11,7 @@ const EMPTY = {
 };
 
 const inputCls =
-  "w-full bg-anthracite border border-white/10 focus:border-gold/60 px-4 py-3 text-sm text-ivory outline-none transition-colors duration-300 placeholder:text-dim rounded-none";
+  "w-full bg-anthracite border border-white/10 focus:border-gold/60 px-4 py-3 text-base sm:text-sm text-ivory outline-none transition-colors duration-300 placeholder:text-dim rounded-none";
 
 const Field = ({ label, htmlFor, children }) => (
   <div className="flex flex-col gap-2">
