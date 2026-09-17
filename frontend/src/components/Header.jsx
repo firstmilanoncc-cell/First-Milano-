@@ -43,6 +43,13 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
   const go = (hash) => {
     setOpen(false);
     if (window.location.pathname !== "/") {
@@ -114,7 +121,7 @@ export default function Header() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-obsidian/98 backdrop-blur-xl xl:hidden flex flex-col justify-center px-8"
+            className="fixed inset-0 z-40 bg-obsidian/98 backdrop-blur-xl xl:hidden flex flex-col justify-center overflow-y-auto px-8 pt-24 pb-10"
           >
             <nav className="flex flex-col gap-1">
               {NAV.map((item, i) => (

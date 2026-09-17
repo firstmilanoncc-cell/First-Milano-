@@ -37,7 +37,7 @@ export default function Hero() {
           className="w-full h-[106%] object-cover object-[64%_center] lg:object-[center_35%] brightness-[1.22]"
           loading="eager"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-obsidian/45 via-obsidian/20 to-obsidian/65 lg:bg-gradient-to-r lg:from-obsidian/60 lg:via-obsidian/20 lg:to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-obsidian/60 via-obsidian/45 to-obsidian/75 lg:bg-gradient-to-r lg:from-obsidian/60 lg:via-obsidian/20 lg:to-transparent" />
         <div className="hidden lg:block absolute inset-0 bg-gradient-to-t from-obsidian/60 via-transparent to-obsidian/15" />
       </motion.div>
 
@@ -88,7 +88,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.05, duration: 0.9, ease: [0.25, 1, 0.5, 1] }}
-          className="mt-6 lg:mt-8 flex flex-col sm:flex-row gap-3 lg:gap-4"
+          className="mt-6 lg:mt-8 flex flex-col sm:flex-row gap-3 lg:gap-4 w-full sm:w-auto"
         >
           <button
             data-testid="hero-quote-button"
@@ -101,7 +101,7 @@ export default function Hero() {
           <button
             data-testid="hero-whatsapp-button"
             onClick={openWhatsAppForm}
-            className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 lg:px-8 lg:py-4 border border-ivory/40 text-ivory text-[11px] lg:text-xs font-semibold tracking-[0.2em] uppercase hover:border-gold hover:text-gold-light transition-colors duration-300"
+            className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 lg:px-8 lg:py-4 border border-ivory/40 bg-obsidian/40 backdrop-blur-sm lg:bg-transparent text-ivory text-[11px] lg:text-xs font-semibold tracking-[0.2em] uppercase hover:border-gold hover:text-gold-light transition-colors duration-300"
           >
             <span className="w-4 h-4"><WhatsAppIcon /></span>
             {t.hero.ctaWhats}

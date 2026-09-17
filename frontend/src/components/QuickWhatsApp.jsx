@@ -25,6 +25,13 @@ export default function QuickWhatsApp() {
     return () => window.removeEventListener("open-wa-form", handler);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
   const setAddr = (k) => (v) => setForm((f) => ({ ...f, [k]: v }));
 
@@ -79,7 +86,7 @@ export default function QuickWhatsApp() {
             </div>
 
             <form data-testid="wa-quick-form" onSubmit={submit} className="mt-6 grid grid-cols-2 gap-4">
-              <input data-testid="wa-input-name" required placeholder={w.name} className={`${inputCls} col-span-2`} value={form.name} onChange={set("name")} />
+              <input data-testid="wa-input-name" required autoComplete="name" placeholder={w.name} className={`${inputCls} col-span-2`} value={form.name} onChange={set("name")} />
               <select data-testid="wa-select-service" required className={`${inputCls} col-span-2`} value={form.service} onChange={set("service")}>
                 <option value="" disabled>{q.selectPlaceholder}</option>
                 {q.services.map((s) => (

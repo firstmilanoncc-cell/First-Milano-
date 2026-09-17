@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Instagram, Facebook, Linkedin, X, Phone, MessageCircle, Mail, MapPin } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/i18n";
@@ -52,6 +52,13 @@ const LegalModal = ({ title, body, onClose, closeLabel }) => (
 export default function Footer() {
   const { t } = useLanguage();
   const [modal, setModal] = useState(null);
+
+  useEffect(() => {
+    document.body.style.overflow = modal ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [modal]);
 
   const socials = [
     { id: "facebook", icon: Facebook, url: CONTACTS.social.facebook },

@@ -77,13 +77,13 @@ export default function QuoteForm() {
             className="mt-12 border border-gold/20 bg-obsidian/80 backdrop-blur-md p-6 sm:p-10 grid grid-cols-1 sm:grid-cols-2 gap-6"
           >
             <Field label={q.name} htmlFor="q-name">
-              <input id="q-name" data-testid="quote-input-name" required className={inputCls} value={form.name} onChange={set("name")} />
+              <input id="q-name" data-testid="quote-input-name" required autoComplete="name" className={inputCls} value={form.name} onChange={set("name")} />
             </Field>
             <Field label={q.phone} htmlFor="q-phone">
-              <input id="q-phone" data-testid="quote-input-phone" required type="tel" className={inputCls} value={form.phone} onChange={set("phone")} />
+              <input id="q-phone" data-testid="quote-input-phone" required type="tel" autoComplete="tel" inputMode="tel" className={inputCls} value={form.phone} onChange={set("phone")} />
             </Field>
             <Field label={q.email} htmlFor="q-email">
-              <input id="q-email" data-testid="quote-input-email" required type="email" className={inputCls} value={form.email} onChange={set("email")} />
+              <input id="q-email" data-testid="quote-input-email" required type="email" autoComplete="email" inputMode="email" className={inputCls} value={form.email} onChange={set("email")} />
             </Field>
             <Field label={q.serviceType} htmlFor="q-service">
               <select id="q-service" data-testid="quote-select-service" required className={inputCls} value={form.service_type} onChange={set("service_type")}>

@@ -29,7 +29,8 @@ export default function FloatingWhatsApp() {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.6 }}
           transition={{ duration: 0.35, ease: [0.25, 1, 0.5, 1] }}
-          className="fixed bottom-5 right-5 z-40 group"
+          className="fixed right-5 z-40 group"
+          style={{ bottom: "max(1.25rem, env(safe-area-inset-bottom))" }}
         >
           <span className="absolute inset-0 rounded-full bg-[#25D366]/40 animate-ping" style={{ animationDuration: "2.5s" }} />
           <span className="relative flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] text-white shadow-2xl shadow-black/50 transition-transform duration-300 group-hover:scale-110">
