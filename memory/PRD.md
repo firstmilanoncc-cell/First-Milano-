@@ -106,3 +106,12 @@ Sito one-page luxury per servizio NCC premium con base a Milano (brand: FIRST MI
 
 ## Nessuna credenziale di accesso
 Il sito non ha area riservata/login.
+
+## Aggiornamento (17/09/2026 — ottimizzazione mobile completa, seconda iterazione)
+- Audit completo a 390x844 su home + pagine SEO + moduli + modali
+- Hero mobile: overlay rinforzato (via /45, bottom /75) per leggibilità su foto schiarita; CTA full-width su mobile; bottone WhatsApp hero con fondo scuro/backdrop-blur
+- Scroll lock robusto condiviso: hook useScrollLock in lib/scroll.js (ferma Lenis + overflow hidden su html E body) usato da menu mobile, modale WhatsApp rapida, modali Privacy/Cookie — prima la wheel scrollava la pagina sotto le modali
+- Autofill mobile: autoComplete name/tel/email + inputMode su moduli preventivo e WhatsApp; viewport-fit=cover; FAB WhatsApp con safe-area-inset-bottom; CSS prefers-reduced-motion + tap-highlight trasparente
+- Fix estetico desktop: nav header con whitespace-nowrap (etichette non vanno più a capo a 1200-1400px)
+- Test: testing agent iteration_5 (backend 100%, frontend 95%) + self-test fix scroll lock (menu aperto 0→0, modale WA 0→0, scroll riprende dopo chiusura)
+- RICHIEDE re-publish per portare tutto su firstmilanoncc.it (insieme a /grazie e asset ads/video)

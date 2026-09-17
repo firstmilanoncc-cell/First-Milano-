@@ -1,0 +1,29 @@
+{
+  "summary": "Mobile UX regression (390x844) + quick desktop regression (1920x800) for FIRST MILANO. Backend /api/quote verified (200, email_sent:true). Hero, mobile menu, WhatsApp quick modal, quote form full flow to /grazie, SEO service page (transfer-malpensa), footer legal modals, floating WA button, desktop layout — all functionally working. Only concern: programmatic wheel scroll on the underlying page still occurs while mobile menu / WA modal are open (body overflow:hidden alone does not fully block scroll on the html element). On real touch devices this may or may not be reproduced; flagging for main agent to strengthen scroll lock.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "Header mobile menu", "issue": "Scroll lock leaks: with mobile menu open (body.style.overflow='hidden' set correctly), programmatic wheel scroll still moved window from y=0 to y=442. Same behaviour with WA modal (0 -> 410). Recommend also locking documentElement (html) overflow, or using position:fixed on body with scrollY restoration, to fully block underlying scroll on iOS/Android.", "selector": "[data-testid=\"mobile-menu\"], [data-testid=\"wa-form-modal\"]", "priority": "MEDIUM"}
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Desktop header 1920", "issues": ["Long nav labels 'CHI SIAMO' and 'NCC CON GUARDIA' wrap to 2 lines within the sticky header at ~1200-1400px, minor cosmetic issue not blocking"]}
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Strengthen scroll lock in Header.jsx, QuickWhatsApp.jsx and legal modal (Footer): also set document.documentElement.style.overflow='hidden' (or apply position:fixed to body with saved scrollY) so wheel/touch scrolling on the underlying page is fully prevented when overlays are open."
+  ],
+  "critical_code_review_comments": [
+    "Header.jsx & QuickWhatsApp.jsx rely solely on document.body.style.overflow='hidden' for scroll lock. This is insufficient in some browsers (especially iOS Safari) where the scroll container is <html>. Recommend a shared useScrollLock hook that sets html+body overflow=hidden and preserves/restores scrollY.",
+    "Hero.jsx uses framer-motion parallax with target ref of a non-static container; console warning: 'Please ensure that the container has a non-static position, like relative, fixed, or absolute'. Cosmetic but worth adding position:relative to the ref element (it's set as 'relative' already on section, so this warning likely triggers from a different Reveal component)."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "100%", "frontend": "95%"},
+  "test_credentials": "N/A (public site)",
+  "seed_data_creation": "One /api/quote submission created with TEST_ prefix (Mario Rossi) — no cleanup needed (email log only).",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Mobile flows validated end-to-end. Quote form submits to /grazie successfully. WA modal window.open captured (wa.me). Autocomplete Photon suggestions do appear (~29 items on 'Duo'). Only outstanding concern is scroll lock robustness — retest by attempting wheel scroll while mobile menu / WA modal / legal modals are open and confirming window.scrollY remains unchanged.",
+  "rca of the issue": "Scroll lock: setting document.body.style.overflow='hidden' does not prevent scroll when the actual scroll container is <html>. Fix: apply overflow:hidden on both html and body (or use position:fixed;top:-scrollY on body and restore on close)."
+}

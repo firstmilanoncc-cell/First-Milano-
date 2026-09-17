@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useLanguage } from "@/i18n";
-import { scrollTo } from "@/lib/scroll";
+import { scrollTo, useScrollLock } from "@/lib/scroll";
 
 const NAV = [
   { hash: "#home", key: "home" },
@@ -43,12 +43,7 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
+  useScrollLock(open);
 
   const go = (hash) => {
     setOpen(false);
@@ -85,7 +80,7 @@ export default function Header() {
                 key={item.hash}
                 data-testid={`nav-link-${item.key}`}
                 onClick={() => go(item.hash)}
-                className="text-[12px] tracking-[0.14em] uppercase text-sub hover:text-gold-light transition-colors duration-300"
+                className="text-[12px] tracking-[0.14em] uppercase text-sub hover:text-gold-light transition-colors duration-300 whitespace-nowrap"
               >
                 {t.nav[item.key]}
               </button>

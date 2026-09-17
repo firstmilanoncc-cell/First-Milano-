@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { useLanguage } from "@/i18n";
 import { CONTACTS } from "@/config";
+import { useScrollLock } from "@/lib/scroll";
 import AddressInput from "@/components/AddressInput";
 
 const EMPTY = { name: "", from: "", to: "", date: "", time: "", passengers: 1, service: "", notes: "" };
@@ -25,12 +26,7 @@ export default function QuickWhatsApp() {
     return () => window.removeEventListener("open-wa-form", handler);
   }, []);
 
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
+  useScrollLock(open);
 
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
   const setAddr = (k) => (v) => setForm((f) => ({ ...f, [k]: v }));
