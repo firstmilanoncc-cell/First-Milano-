@@ -19,6 +19,7 @@ import PaymentPage from "@/components/PaymentPage";
 import PaymentResult from "@/components/PaymentResult";
 import ThankYou from "@/components/ThankYou";
 import ServicePage from "@/components/ServicePage";
+import AnalyticsRouteListener from "@/components/AnalyticsRouteListener";
 
 function Home() {
   const { lang } = useLanguage();
@@ -72,6 +73,7 @@ function App() {
     <LanguageProvider>
       <div className="App grain bg-obsidian text-ivory font-sans antialiased">
         <BrowserRouter>
+          <AnalyticsRouteListener />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/pagamento" element={<PaymentPage />} />
