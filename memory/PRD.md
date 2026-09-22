@@ -115,3 +115,11 @@ Il sito non ha area riservata/login.
 - Fix estetico desktop: nav header con whitespace-nowrap (etichette non vanno più a capo a 1200-1400px)
 - Test: testing agent iteration_5 (backend 100%, frontend 95%) + self-test fix scroll lock (menu aperto 0→0, modale WA 0→0, scroll riprende dopo chiusura)
 - RICHIEDE re-publish per portare tutto su firstmilanoncc.it (insieme a /grazie e asset ads/video)
+
+## Aggiornamento (22/09/2026 — tag Google Ads live + conversione /grazie)
+- Tag Google Ads AW-18450759460 installato in public/index.html accanto a GA4 (un solo loader gtag, due config, send_page_view:false su entrambi)
+- src/analytics.js: trackPageView con dedupe per URL (evita doppi invii da StrictMode dev) inviato a GA4+Ads a ogni cambio rotta; trackAdsConversion(label) pronto per conversione a evento se serve
+- AnalyticsRouteListener montato in App.js dentro BrowserRouter
+- Conversione configurata dall'utente in Google Ads come caricamento pagina su https://firstmilanoncc.it/grazie
+- DEPLOY ESEGUITO e verificato live: firstmilanoncc.it/grazie serve titolo "Grazie | FIRST MILANO", dataLayer con config GA4+AW e evento page_view
+- In attesa: utente deve scegliere foto flotta reali tra /images/candidates/van-a.jpg, van-b.jpg, berlina-a.jpg, berlina-b.jpg (preview)
