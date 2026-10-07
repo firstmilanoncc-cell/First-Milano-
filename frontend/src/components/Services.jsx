@@ -1,6 +1,7 @@
 import { Plane, Briefcase, Clock3, Gem, MapPin, ShieldCheck, Route } from "lucide-react";
 import { useLanguage } from "@/i18n";
 import { Reveal } from "@/components/Reveal";
+import { scrollTo } from "@/lib/scroll";
 
 const ICONS = [Plane, Briefcase, Clock3, Gem, MapPin, ShieldCheck, Route];
 
@@ -22,12 +23,13 @@ export default function Services() {
             const Icon = ICONS[i];
             return (
               <Reveal key={s.title} delay={i * 0.07} className="w-[calc(50%-12px)] sm:w-[calc(33.333%-16px)] xl:w-[calc(25%-18px)]">
-                <div data-testid={`service-card-${i}`} className="group text-center h-full">
-                  <Icon
-                    size={30}
-                    strokeWidth={1.1}
-                    className="mx-auto text-golddeep transition-transform duration-500 group-hover:-translate-y-1.5"
-                  />
+                <div data-testid={`service-card-${i}`} className="group text-center h-full border border-ink/10 bg-white/45 p-6 sm:p-7 rounded-2xl transition-all duration-500 hover:-translate-y-1 hover:bg-white/80 hover:shadow-xl hover:shadow-black/5">
+                  <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-golddeep/8 text-golddeep transition-all duration-500 group-hover:bg-golddeep group-hover:text-cream">
+                    <Icon
+                      size={24}
+                      strokeWidth={1.3}
+                    />
+                  </span>
                   <h3 className="mt-5 text-[12px] sm:text-[13px] font-bold tracking-[0.12em] uppercase text-ink leading-snug">
                     {s.title}
                   </h3>
@@ -38,6 +40,15 @@ export default function Services() {
             );
           })}
         </div>
+
+        <Reveal delay={0.12} className="mt-14 text-center">
+          <button
+            onClick={() => scrollTo("#preventivo")}
+            className="inline-flex items-center justify-center px-7 py-3.5 bg-ink text-cream text-[11px] font-semibold tracking-[0.18em] uppercase hover:bg-golddeep transition-colors duration-300 rounded-xl"
+          >
+            {t.hero.ctaQuote}
+          </button>
+        </Reveal>
       </div>
     </section>
   );
