@@ -5,7 +5,7 @@ export const translations = {
     meta: {
       lang: "it",
       title: "FIRST MILANO | NCC Milano & Private Chauffeur Service",
-      description: "FIRST MILANO offre servizi NCC e private chauffeur a Milano per transfer aeroportuali, business, eventi, autista a disposizione e trasferimenti in Italia.",
+      description: "NCC Milano e private chauffeur per Malpensa, Linate, Orio al Serio, business, eventi e trasferimenti in Italia. Richiedi disponibilità a FIRST MILANO.",
     },
     nav: {
       home: "Home",
@@ -30,7 +30,7 @@ export const translations = {
       features: [
         { title: "Aeroporti", text: "Malpensa • Linate • Orio al Serio" },
         { title: "Autisti Professionali", text: "Esperienza • Cortesia • Riservatezza" },
-        { title: "Disponibilità 24/7", text: "Servizio su prenotazione" },
+        { title: "Prezzo concordato", text: "Preventivo definito prima del servizio" },
         { title: "Milano & Italia", text: "Trasferimenti verso le principali destinazioni" },
       ],
     },
@@ -40,7 +40,7 @@ export const translations = {
       title: "Un servizio su misura per ogni esigenza",
       items: [
         { title: "Transfer Aeroportuali", desc: "Transfer privati da e per Malpensa, Linate e Orio al Serio con monitoraggio del volo e accoglienza." },
-        { title: "Business & Corporate", desc: "Soluzioni dedicate ad aziende, manager e professionisti. Puntualità, flessibilità e riservatezza garantite." },
+        { title: "Business & Corporate", desc: "Soluzioni dedicate ad aziende, manager e professionisti, con attenzione a puntualità, flessibilità e riservatezza." },
         { title: "Autista a Disposizione", desc: "Vettura e conducente a disposizione per ore, per l'intera giornata o per itinerari personalizzati." },
         { title: "Eventi & Fashion", desc: "Servizi NCC per eventi, fiere, Milano Fashion Week, cerimonie e occasioni esclusive." },
         { title: "Viaggi e Trasferimenti", desc: "Trasferimenti da Milano verso le principali città e destinazioni turistiche in tutta Italia." },
@@ -50,7 +50,7 @@ export const translations = {
     },
     fleet: {
       eyebrow: "La nostra flotta",
-      title: "Mercedes, sinonimo di comfort ed eleganza",
+      title: "Mercedes per business, aeroporti e viaggi privati",
       sedan: {
         label: "Berline di Lusso",
         model: "Mercedes Classe S / E",
@@ -73,7 +73,7 @@ export const translations = {
     airports: {
       eyebrow: "Transfer aeroportuali",
       title: "Transfer Aeroportuali",
-      desc: "Malpensa · Linate · Orio al Serio. Monitoraggio del volo, attesa inclusa e accoglienza agli arrivi con cartello personalizzato.",
+      desc: "Malpensa · Linate · Orio al Serio. Monitoraggio del volo, coordinamento dell'orario di arrivo e accoglienza con cartello personalizzato.",
       cta: "Richiedi il tuo transfer",
     },
     guard: {
@@ -89,7 +89,7 @@ export const translations = {
       intro: "Un servizio NCC premium con base a Milano: autisti professionisti, vetture Mercedes e un'organizzazione curata in ogni dettaglio.",
       items: [
         { title: "Autisti professionisti", desc: "Conducenti esperti, cortesi e riservati, al servizio del tuo viaggio." },
-        { title: "Puntuale e discreto", desc: "Ogni servizio è pianificato con cura: l'autista arriva in anticipo e la riservatezza è garantita." },
+        { title: "Puntualità e discrezione", desc: "Ogni servizio viene pianificato sui tuoi orari, con attenzione alla puntualità e alla riservatezza." },
         { title: "Monitoraggio voli", desc: "Per i transfer aeroportuali seguiamo il volo in tempo reale: in caso di ritardo l'autista ti aspetta." },
         { title: "Accoglienza in aeroporto", desc: "Ti attendiamo agli arrivi con cartello personalizzato e assistenza con i bagagli." },
         { title: "Veicoli premium", desc: "Berline e van Mercedes: comfort, pulizia e spazio per i bagagli." },
@@ -99,8 +99,8 @@ export const translations = {
     quote: {
       eyebrow: "Preventivo",
       title: "Richiedi disponibilità e preventivo",
-      subtitle: "Raccontaci il tuo viaggio: pochi campi, nessuna attesa.",
-      promise: "Ricevi rapidamente disponibilità e preventivo personalizzato.",
+      subtitle: "Raccontaci il tuo viaggio: bastano i dettagli essenziali per ricevere una proposta personalizzata.",
+      promise: "Disponibilità e preventivo personalizzato, prima della conferma del servizio.",
       name: "Nome e cognome",
       phone: "Telefono / WhatsApp",
       email: "Email",
@@ -110,9 +110,9 @@ export const translations = {
       time: "Ora",
       passengers: "Numero passeggeri",
       luggage: "Numero bagagli (facoltativo)",
-      serviceType: "Tipologia servizio",
+      serviceType: "Tipologia servizio (facoltativa)",
       notes: "Note (facoltativo)",
-      selectPlaceholder: "Seleziona il servizio",
+      selectPlaceholder: "Seleziona, se vuoi",
       services: ["Transfer aeroporto", "Transfer privato", "Business", "Autista a disposizione", "Evento", "Viaggio lunga percorrenza", "NCC + guardia del corpo", "Altro"],
       privacy: "Ho letto e accetto la Privacy Policy",
       submit: "Invia richiesta",
@@ -124,6 +124,9 @@ export const translations = {
       waAlt: "Preferisci WhatsApp? Inviaci partenza, destinazione, data e orario.",
       waAltButton: "Scrivici su WhatsApp",
       geoAttribution: "Suggerimenti indirizzi: © OpenStreetMap contributors / Photon",
+      tripDetails: "Dettagli del viaggio",
+      contactDetails: "I tuoi contatti",
+      trustNote: "La richiesta non comporta alcun pagamento. Ti ricontattiamo con disponibilità e proposta personalizzata.",
     },
     waForm: {
       title: "Richiesta rapida via WhatsApp",
@@ -149,7 +152,7 @@ export const translations = {
       note: "Servizio disponibile su prenotazione, in base alle tue esigenze di viaggio.",
     },
     footer: {
-      tagline: "Noleggio con conducente a Milano e in tutta Italia.",
+      tagline: "NCC e private chauffeur da Milano per aeroporti, business, eventi e trasferimenti in tutta Italia.",
       links: "Navigazione",
       contactsTitle: "Contatti",
       area: "Area operativa",
@@ -159,12 +162,12 @@ export const translations = {
       follow: "Seguici",
       rights: "Tutti i diritti riservati.",
     },
-    mobileBar: { quote: "Preventivo" },
+    mobileBar: { quote: "Richiedi preventivo" },
     reviews: { eyebrow: "Dicono di noi", title: "Le recensioni dei clienti" },
     servicePage: {
       faqTitle: "Domande frequenti",
       midTitle: "Richiedi disponibilità per il tuo transfer",
-      midText: "Ti rispondiamo rapidamente con disponibilità e prezzo concordato in anticipo.",
+      midText: "Ricevi disponibilità e una proposta con prezzo definito prima della conferma del servizio.",
       quote: "Richiedi preventivo",
       whatsapp: "WhatsApp",
     },
@@ -180,7 +183,7 @@ export const translations = {
     meta: {
       lang: "en",
       title: "FIRST MILANO | NCC Milan & Private Chauffeur Service",
-      description: "FIRST MILANO provides NCC and private chauffeur services in Milan for airport transfers, business, events, hourly hire and transfers across Italy.",
+      description: "Milan private chauffeur and airport transfers for Malpensa, Linate and Orio al Serio, plus business, events and long-distance travel across Italy.",
     },
     nav: {
       home: "Home",
@@ -205,7 +208,7 @@ export const translations = {
       features: [
         { title: "Airports", text: "Malpensa • Linate • Orio al Serio" },
         { title: "Professional Chauffeurs", text: "Experience • Courtesy • Confidentiality" },
-        { title: "Availability 24/7", text: "Service by reservation" },
+        { title: "Agreed price", text: "Quote defined before the service" },
         { title: "Milan & Italy", text: "Transfers to major destinations" },
       ],
     },
@@ -215,7 +218,7 @@ export const translations = {
       title: "A tailored service for every need",
       items: [
         { title: "Airport Transfers", desc: "Private transfers to and from Malpensa, Linate and Orio al Serio with flight tracking and meet & greet." },
-        { title: "Business & Corporate", desc: "Dedicated solutions for companies, executives and professionals. Punctuality, flexibility and confidentiality guaranteed." },
+        { title: "Business & Corporate", desc: "Dedicated solutions for companies, executives and professionals, with a focus on punctuality, flexibility and confidentiality." },
         { title: "Chauffeur at Disposal", desc: "Car and driver at your disposal by the hour, for the whole day or for customised itineraries." },
         { title: "Events & Fashion", desc: "Chauffeur services for events, trade fairs, Milan Fashion Week, ceremonies and exclusive occasions." },
         { title: "Travel & Transfers", desc: "Transfers from Milan to major cities and tourist destinations throughout Italy." },
@@ -225,7 +228,7 @@ export const translations = {
     },
     fleet: {
       eyebrow: "Our fleet",
-      title: "Mercedes, synonymous with comfort and elegance",
+      title: "Mercedes for business, airports and private travel",
       sedan: {
         label: "Luxury Sedans",
         model: "Mercedes S-Class / E-Class",
@@ -248,7 +251,7 @@ export const translations = {
     airports: {
       eyebrow: "Airport transfers",
       title: "Airport Transfers",
-      desc: "Malpensa · Linate · Orio al Serio. Flight tracking, waiting time included and arrivals welcome with a personalised name board.",
+      desc: "Malpensa · Linate · Orio al Serio. Flight tracking, coordinated pick-up timing and meet & greet with a personalised name board.",
       cta: "Request your transfer",
     },
     guard: {
@@ -264,7 +267,7 @@ export const translations = {
       intro: "A premium chauffeur service based in Milan: professional drivers, Mercedes vehicles and organisation curated in every detail.",
       items: [
         { title: "Professional chauffeurs", desc: "Experienced, courteous and discreet drivers, at the service of your journey." },
-        { title: "Punctual and discreet", desc: "Every service is carefully planned: your chauffeur arrives early and confidentiality is guaranteed." },
+        { title: "Punctuality and discretion", desc: "Every service is planned around your schedule, with close attention to punctuality and confidentiality." },
         { title: "Flight tracking", desc: "For airport transfers we track your flight in real time: if it is delayed, your chauffeur waits." },
         { title: "Airport meet & greet", desc: "We wait for you at arrivals with a personalised name board and luggage assistance." },
         { title: "Premium vehicles", desc: "Mercedes sedans and vans: comfort, cleanliness and room for your luggage." },
@@ -274,8 +277,8 @@ export const translations = {
     quote: {
       eyebrow: "Quote",
       title: "Check availability & get a quote",
-      subtitle: "Tell us about your journey: just a few fields, no waiting.",
-      promise: "Get availability and a personalised quote, fast.",
+      subtitle: "Tell us the essentials of your journey and receive a tailored proposal.",
+      promise: "Availability and a personalised quote before you confirm the service.",
       name: "Full name",
       phone: "Phone / WhatsApp",
       email: "Email",
@@ -285,9 +288,9 @@ export const translations = {
       time: "Time",
       passengers: "Passengers",
       luggage: "Luggage (optional)",
-      serviceType: "Service type",
+      serviceType: "Service type (optional)",
       notes: "Notes (optional)",
-      selectPlaceholder: "Select a service",
+      selectPlaceholder: "Select if useful",
       services: ["Airport transfer", "Private transfer", "Business", "Chauffeur at disposal", "Event", "Long-distance journey", "NCC + bodyguard", "Other"],
       privacy: "I have read and accept the Privacy Policy",
       submit: "Send request",
@@ -299,6 +302,9 @@ export const translations = {
       waAlt: "Prefer WhatsApp? Send us pick-up, destination, date and time.",
       waAltButton: "Message us on WhatsApp",
       geoAttribution: "Address suggestions: © OpenStreetMap contributors / Photon",
+      tripDetails: "Journey details",
+      contactDetails: "Your contact details",
+      trustNote: "No payment is required to send this request. We will reply with availability and a tailored proposal.",
     },
     waForm: {
       title: "Quick request via WhatsApp",
@@ -324,7 +330,7 @@ export const translations = {
       note: "Service available by reservation, tailored to your travel needs.",
     },
     footer: {
-      tagline: "Chauffeur service in Milan and throughout Italy.",
+      tagline: "Private chauffeur service from Milan for airports, business, events and long-distance travel across Italy.",
       links: "Navigation",
       contactsTitle: "Contacts",
       area: "Service area",
@@ -334,12 +340,12 @@ export const translations = {
       follow: "Follow us",
       rights: "All rights reserved.",
     },
-    mobileBar: { quote: "Quote" },
+    mobileBar: { quote: "Request quote" },
     reviews: { eyebrow: "Testimonials", title: "What our clients say" },
     servicePage: {
       faqTitle: "Frequently asked questions",
       midTitle: "Check availability for your transfer",
-      midText: "We reply quickly with availability and a price agreed in advance.",
+      midText: "Receive availability and a proposal with the price defined before you confirm the service.",
       quote: "Request a quote",
       whatsapp: "WhatsApp",
     },

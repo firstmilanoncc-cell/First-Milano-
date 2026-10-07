@@ -27,9 +27,16 @@ import { scrollTo } from "@/lib/scroll";
 function Home() {
   const { lang } = useLanguage();
   useEffect(() => {
-    document.title = translations[lang].meta.title;
-    document.querySelector('meta[name="description"]')?.setAttribute("content", translations[lang].meta.description);
-    document.querySelector('link[rel="canonical"]')?.setAttribute("href", "https://firstmilanoncc.it/");
+    const meta = translations[lang].meta;
+    const homeUrl = "https://firstmilanoncc.it/";
+    document.title = meta.title;
+    document.querySelector('meta[name="description"]')?.setAttribute("content", meta.description);
+    document.querySelector('link[rel="canonical"]')?.setAttribute("href", homeUrl);
+    document.querySelector('meta[property="og:title"]')?.setAttribute("content", meta.title);
+    document.querySelector('meta[property="og:description"]')?.setAttribute("content", meta.description);
+    document.querySelector('meta[property="og:url"]')?.setAttribute("content", homeUrl);
+    document.querySelector('meta[name="twitter:title"]')?.setAttribute("content", meta.title);
+    document.querySelector('meta[name="twitter:description"]')?.setAttribute("content", meta.description);
   }, [lang]);
   useEffect(() => {
     if (window.location.hash) {

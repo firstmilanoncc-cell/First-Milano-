@@ -22,8 +22,8 @@ export default function WhyUs() {
             const Icon = ICONS[i % ICONS.length];
             return (
               <Reveal key={item.title} delay={i * 0.07}>
-                <div data-testid={`why-item-${i}`} className="group text-center sm:text-left">
-                  <span className="inline-flex items-center justify-center w-12 h-12 border border-golddeep/30 text-golddeep transition-colors duration-500 group-hover:bg-golddeep group-hover:text-cream">
+                <div data-testid={`why-item-${i}`} className="group text-center sm:text-left h-full border border-ink/8 bg-white/35 p-6 sm:p-7 rounded-2xl transition-all duration-500 hover:bg-white/70 hover:shadow-lg hover:shadow-black/5">
+                  <span className="inline-flex items-center justify-center w-12 h-12 border border-golddeep/30 text-golddeep rounded-2xl transition-colors duration-500 group-hover:bg-golddeep group-hover:text-cream">
                     <Icon size={20} strokeWidth={1.5} />
                   </span>
                   <h3 className="mt-5 font-serif text-xl sm:text-2xl text-ink">{item.title}</h3>
