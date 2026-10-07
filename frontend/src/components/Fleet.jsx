@@ -1,6 +1,7 @@
 import { Check, Users, Luggage, Sparkles } from "lucide-react";
 import { useLanguage } from "@/i18n";
 import { Reveal } from "@/components/Reveal";
+import { scrollTo } from "@/lib/scroll";
 import { IMAGES } from "@/config";
 
 const SpecChip = ({ icon: Icon, children }) => (
@@ -12,7 +13,7 @@ const SpecChip = ({ icon: Icon, children }) => (
 
 const FleetCard = ({ data, image, testId, delay }) => (
   <Reveal delay={delay}>
-    <article data-testid={testId} className="group relative h-[560px] lg:h-[640px] overflow-hidden border border-white/10">
+    <article data-testid={testId} className="group relative h-[560px] lg:h-[640px] overflow-hidden border border-white/10 rounded-3xl shadow-2xl shadow-black/20">
       <img
         src={image}
         alt={`${data.label} — ${data.model}`}
@@ -58,6 +59,14 @@ export default function Fleet() {
           <FleetCard data={t.fleet.sedan} image={IMAGES.fleetSedan} testId="fleet-card-sedan" delay={0.1} />
           <FleetCard data={t.fleet.van} image={IMAGES.fleetVan} testId="fleet-card-van" delay={0.2} />
         </div>
+        <Reveal delay={0.18} className="mt-10 text-center">
+          <button
+            onClick={() => scrollTo("#preventivo")}
+            className="inline-flex items-center justify-center px-7 py-3.5 border border-gold/50 bg-gold/10 text-gold-light text-[11px] font-semibold tracking-[0.18em] uppercase hover:bg-gold hover:text-obsidian transition-colors duration-300 rounded-xl"
+          >
+            {t.hero.ctaQuote}
+          </button>
+        </Reveal>
       </div>
     </section>
   );
