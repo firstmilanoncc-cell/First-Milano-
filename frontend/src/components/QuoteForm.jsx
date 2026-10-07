@@ -4,6 +4,8 @@ import { toast } from "sonner";
 import { useLanguage } from "@/i18n";
 import { Reveal, Eyebrow } from "@/components/Reveal";
 import AddressInput from "@/components/AddressInput";
+import { openWhatsAppForm } from "@/components/QuickWhatsApp";
+import { WhatsAppIcon } from "@/components/FloatingWhatsApp";
 
 const EMPTY = {
   name: "", phone: "", email: "", pickup: "", destination: "",
@@ -68,6 +70,9 @@ export default function QuoteForm() {
           <Eyebrow>{q.eyebrow}</Eyebrow>
           <h2 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-5xl text-ivory">{q.title}</h2>
           <p className="mt-4 text-sm sm:text-base text-sub">{q.subtitle}</p>
+          <p data-testid="quote-promise" className="mt-5 inline-flex items-center gap-2 border border-gold/30 bg-gold/5 px-5 py-2.5 text-[11px] sm:text-xs uppercase tracking-[0.16em] text-gold-light">
+            {q.promise}
+          </p>
         </Reveal>
 
         <Reveal delay={0.15}>
@@ -76,23 +81,6 @@ export default function QuoteForm() {
             onSubmit={onSubmit}
             className="mt-12 border border-gold/20 bg-obsidian/80 backdrop-blur-md p-6 sm:p-10 grid grid-cols-1 sm:grid-cols-2 gap-6"
           >
-            <Field label={q.name} htmlFor="q-name">
-              <input id="q-name" data-testid="quote-input-name" required autoComplete="name" className={inputCls} value={form.name} onChange={set("name")} />
-            </Field>
-            <Field label={q.phone} htmlFor="q-phone">
-              <input id="q-phone" data-testid="quote-input-phone" required type="tel" autoComplete="tel" inputMode="tel" className={inputCls} value={form.phone} onChange={set("phone")} />
-            </Field>
-            <Field label={q.email} htmlFor="q-email">
-              <input id="q-email" data-testid="quote-input-email" required type="email" autoComplete="email" inputMode="email" className={inputCls} value={form.email} onChange={set("email")} />
-            </Field>
-            <Field label={q.serviceType} htmlFor="q-service">
-              <select id="q-service" data-testid="quote-select-service" required className={inputCls} value={form.service_type} onChange={set("service_type")}>
-                <option value="" disabled>{q.selectPlaceholder}</option>
-                {q.services.map((s) => (
-                  <option key={s} value={s}>{s}</option>
-                ))}
-              </select>
-            </Field>
             <Field label={q.pickup} htmlFor="q-pickup">
               <AddressInput id="q-pickup" testId="quote-input-pickup" required className={inputCls} value={form.pickup} onChange={setAddr("pickup")} />
             </Field>
@@ -106,10 +94,27 @@ export default function QuoteForm() {
               <input id="q-time" data-testid="quote-input-time" required type="time" className={inputCls} value={form.time} onChange={set("time")} />
             </Field>
             <Field label={q.passengers} htmlFor="q-passengers">
-              <input id="q-passengers" data-testid="quote-input-passengers" type="number" min="1" max="8" className={inputCls} value={form.passengers} onChange={set("passengers")} />
+              <input id="q-passengers" data-testid="quote-input-passengers" type="number" min="1" max="8" inputMode="numeric" className={inputCls} value={form.passengers} onChange={set("passengers")} />
+            </Field>
+            <Field label={q.serviceType} htmlFor="q-service">
+              <select id="q-service" data-testid="quote-select-service" required className={inputCls} value={form.service_type} onChange={set("service_type")}>
+                <option value="" disabled>{q.selectPlaceholder}</option>
+                {q.services.map((s) => (
+                  <option key={s} value={s}>{s}</option>
+                ))}
+              </select>
+            </Field>
+            <Field label={q.name} htmlFor="q-name">
+              <input id="q-name" data-testid="quote-input-name" required autoComplete="name" className={inputCls} value={form.name} onChange={set("name")} />
+            </Field>
+            <Field label={q.phone} htmlFor="q-phone">
+              <input id="q-phone" data-testid="quote-input-phone" required type="tel" autoComplete="tel" inputMode="tel" className={inputCls} value={form.phone} onChange={set("phone")} />
+            </Field>
+            <Field label={q.email} htmlFor="q-email">
+              <input id="q-email" data-testid="quote-input-email" required type="email" autoComplete="email" inputMode="email" className={inputCls} value={form.email} onChange={set("email")} />
             </Field>
             <Field label={q.luggage} htmlFor="q-luggage">
-              <input id="q-luggage" data-testid="quote-input-luggage" type="number" min="0" max="12" className={inputCls} value={form.luggage} onChange={set("luggage")} />
+              <input id="q-luggage" data-testid="quote-input-luggage" type="number" min="0" max="12" inputMode="numeric" className={inputCls} value={form.luggage} onChange={set("luggage")} />
             </Field>
             <div className="sm:col-span-2">
               <Field label={q.notes} htmlFor="q-notes">
@@ -135,6 +140,18 @@ export default function QuoteForm() {
             >
               {sending ? q.sending : q.submit}
             </button>
+            <div className="sm:col-span-2 mt-2 border-t border-white/10 pt-6 text-center">
+              <p className="text-xs text-sub">{q.waAlt}</p>
+              <button
+                type="button"
+                data-testid="quote-whatsapp-alt"
+                onClick={openWhatsAppForm}
+                className="mt-4 w-full inline-flex items-center justify-center gap-2.5 py-4 bg-[#25D366] text-obsidian text-xs font-bold tracking-[0.2em] uppercase hover:bg-[#1DA851] transition-colors duration-300"
+              >
+                <span className="w-4 h-4"><WhatsAppIcon /></span>
+                {q.waAltButton}
+              </button>
+            </div>
           </form>
         </Reveal>
       </div>

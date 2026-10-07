@@ -3,7 +3,7 @@ import { Instagram, Facebook, Linkedin, X, Phone, MessageCircle, Mail, MapPin } 
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/i18n";
 import { scrollTo, useScrollLock } from "@/lib/scroll";
-import { CONTACTS } from "@/config";
+import { CONTACTS, AREA } from "@/config";
 
 const NAV = [
   { hash: "#home", key: "home" },
@@ -21,6 +21,12 @@ const SERVICE_LINKS = [
   { path: "/transfer-orio-al-serio", label: "Transfer Orio al Serio" },
   { path: "/autista-a-disposizione", label: "Autista a Disposizione" },
   { path: "/eventi-fashion-week", label: "Eventi & Fashion Week" },
+  { path: "/milano-lago-di-como", label: "Milano – Lago di Como" },
+  { path: "/milano-st-moritz", label: "Milano – St. Moritz" },
+  { path: "/milano-portofino", label: "Milano – Portofino" },
+  { path: "/milano-venezia", label: "Milano – Venezia" },
+  { path: "/milano-firenze", label: "Milano – Firenze" },
+  { path: "/milano-roma", label: "Milano – Roma" },
 ];
 
 const LegalModal = ({ title, body, onClose, closeLabel }) => (
@@ -77,6 +83,8 @@ export default function Footer() {
           <p className="font-serif text-xl tracking-[0.18em] text-ivory">FIRST MILANO</p>
           <p className="text-[10px] tracking-[0.3em] uppercase text-gold mt-1">Private Chauffeur Service</p>
           <p className="mt-5 text-sm text-sub leading-relaxed max-w-xs">{t.footer.tagline}</p>
+          <p className="mt-5 text-[11px] uppercase tracking-[0.25em] text-gold font-semibold">{t.footer.area}</p>
+          <p data-testid="footer-area" className="mt-2 text-sm text-sub">{AREA}</p>
         </div>
         <div>
           <p className="text-[11px] uppercase tracking-[0.3em] text-gold font-semibold">{t.footer.contactsTitle}</p>

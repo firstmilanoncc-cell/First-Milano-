@@ -6,16 +6,18 @@ import { useLanguage } from "@/i18n";
 import { openWhatsAppForm, default as QuickWhatsApp } from "@/components/QuickWhatsApp";
 import { WhatsAppIcon } from "@/components/FloatingWhatsApp";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import MobileCtaBar from "@/components/MobileCtaBar";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Reveal } from "@/components/Reveal";
 import { SERVICE_PAGES } from "@/servicePages";
 
 export default function ServicePage({ slug }) {
-  const { lang } = useLanguage();
+  const { lang, t } = useLanguage();
   const navigate = useNavigate();
   const page = SERVICE_PAGES[slug];
   const c = page[lang];
+  const sp = t.servicePage;
 
   useEffect(() => {
     document.title = c.metaTitle;
@@ -24,6 +26,24 @@ export default function ServicePage({ slug }) {
     let canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) canonical.setAttribute("href", `https://firstmilanoncc.it/${slug}`);
     window.scrollTo(0, 0);
+
+    let faqScript = null;
+    if (c.faqs?.length) {
+      faqScript = document.createElement("script");
+      faqScript.type = "application/ld+json";
+      faqScript.id = "faq-jsonld";
+      faqScript.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: c.faqs.map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      });
+      document.head.appendChild(faqScript);
+    }
+    return () => faqScript?.remove();
   }, [c, slug]);
 
   const goQuote = () => {
@@ -99,6 +119,74 @@ export default function ServicePage({ slug }) {
           </div>
         </section>
 
+        <section className="pb-4">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Reveal>
+              <div className="border border-gold/25 bg-anthracite/60 p-7 sm:p-9 flex flex-col sm:flex-row items-center justify-between gap-6">
+                <div className="text-center sm:text-left">
+                  <h2 className="font-serif text-xl sm:text-2xl text-ivory">{sp.midTitle}</h2>
+                  <p className="mt-2 text-sm text-sub">{sp.midText}</p>
+                </div>
+                <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto shrink-0">
+                  <button
+                    data-testid="service-mid-quote-button"
+                    onClick={goQuote}
+                    className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 bg-gold text-obsidian text-[11px] font-semibold tracking-[0.18em] uppercase hover:bg-gold-light transition-colors duration-300"
+                  >
+                    <CalendarDays size={15} strokeWidth={2} />
+                    {sp.quote}
+                  </button>
+                  <button
+                    data-testid="service-mid-whatsapp-button"
+                    onClick={openWhatsAppForm}
+                    className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 bg-[#25D366] text-obsidian text-[11px] font-bold tracking-[0.18em] uppercase hover:bg-[#1DA851] transition-colors duration-300"
+                  >
+                    <span className="w-4 h-4"><WhatsAppIcon /></span>
+                    {sp.whatsapp}
+                  </button>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {c.sections?.length > 0 && (
+          <section className="py-16 lg:py-20">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-10">
+              {c.sections.map((s, i) => (
+                <Reveal key={s.t} delay={(i % 2) * 0.08}>
+                  <div data-testid={`service-info-${i}`} className="border-l-2 border-gold/40 pl-6">
+                    <h2 className="font-serif text-xl sm:text-2xl text-ivory">{s.t}</h2>
+                    <p className="mt-3 text-sm text-sub leading-relaxed">{s.d}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {c.faqs?.length > 0 && (
+          <section className="pb-16 lg:pb-24">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <Reveal className="text-center flex flex-col items-center">
+                <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl text-ivory">{sp.faqTitle}</h2>
+                <span className="mt-5 h-px w-14 bg-gold/60" />
+              </Reveal>
+              <div className="mt-10 divide-y divide-white/8 border-y border-white/8">
+                {c.faqs.map((f, i) => (
+                  <details key={f.q} data-testid={`service-faq-${i}`} className="group py-5 [&_summary::-webkit-details-marker]:hidden">
+                    <summary className="flex items-center justify-between gap-4 cursor-pointer list-none text-ivory text-sm sm:text-base font-semibold tracking-wide hover:text-gold-light transition-colors">
+                      {f.q}
+                      <span className="shrink-0 text-gold text-xl font-light transition-transform duration-300 group-open:rotate-45">+</span>
+                    </summary>
+                    <p className="mt-3 text-sm text-sub leading-relaxed pr-8">{f.a}</p>
+                  </details>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
         <section className="pb-20 lg:pb-28">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <Reveal>
@@ -112,7 +200,7 @@ export default function ServicePage({ slug }) {
                     className="inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-gold text-obsidian text-xs font-semibold tracking-[0.2em] uppercase hover:bg-gold-light transition-colors duration-300"
                   >
                     <CalendarDays size={15} strokeWidth={2} />
-                    Richiedi preventivo
+                    {sp.quote}
                   </button>
                   <button
                     data-testid="service-whatsapp-button"
@@ -130,6 +218,7 @@ export default function ServicePage({ slug }) {
       </main>
       <Footer />
       <FloatingWhatsApp />
+      <MobileCtaBar />
       <QuickWhatsApp />
     </>
   );

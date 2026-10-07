@@ -12,6 +12,7 @@ import Services from "@/components/Services";
 import Fleet from "@/components/Fleet";
 import Airports from "@/components/Airports";
 import WhyUs from "@/components/WhyUs";
+import Reviews from "@/components/Reviews";
 import QuoteForm from "@/components/QuoteForm";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
@@ -20,6 +21,7 @@ import PaymentResult from "@/components/PaymentResult";
 import ThankYou from "@/components/ThankYou";
 import ServicePage from "@/components/ServicePage";
 import AnalyticsRouteListener from "@/components/AnalyticsRouteListener";
+import MobileCtaBar from "@/components/MobileCtaBar";
 import { scrollTo } from "@/lib/scroll";
 
 function Home() {
@@ -46,10 +48,12 @@ function Home() {
         <Fleet />
         <Airports />
         <WhyUs />
+        <Reviews />
         <QuoteForm />
       </main>
       <Footer />
       <FloatingWhatsApp />
+      <MobileCtaBar />
       <QuickWhatsApp />
     </>
   );
@@ -88,6 +92,12 @@ function App() {
             <Route path="/transfer-orio-al-serio" element={<ServicePage slug="transfer-orio-al-serio" />} />
             <Route path="/autista-a-disposizione" element={<ServicePage slug="autista-a-disposizione" />} />
             <Route path="/eventi-fashion-week" element={<ServicePage slug="eventi-fashion-week" />} />
+            <Route path="/milano-lago-di-como" element={<ServicePage slug="milano-lago-di-como" />} />
+            <Route path="/milano-st-moritz" element={<ServicePage slug="milano-st-moritz" />} />
+            <Route path="/milano-portofino" element={<ServicePage slug="milano-portofino" />} />
+            <Route path="/milano-venezia" element={<ServicePage slug="milano-venezia" />} />
+            <Route path="/milano-firenze" element={<ServicePage slug="milano-firenze" />} />
+            <Route path="/milano-roma" element={<ServicePage slug="milano-roma" />} />
           </Routes>
         </BrowserRouter>
         <Toaster position="top-center" theme="dark" />

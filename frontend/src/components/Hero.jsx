@@ -36,6 +36,7 @@ export default function Hero() {
           alt="Piazza del Duomo di Milano di sera con Mercedes nera e autista professionale"
           className="w-full h-[106%] object-cover object-[64%_center] lg:object-[center_35%] brightness-[1.22]"
           loading="eager"
+          fetchpriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-obsidian/60 via-obsidian/45 to-obsidian/75 lg:bg-gradient-to-r lg:from-obsidian/60 lg:via-obsidian/20 lg:to-transparent" />
         <div className="hidden lg:block absolute inset-0 bg-gradient-to-t from-obsidian/60 via-transparent to-obsidian/15" />
@@ -49,39 +50,37 @@ export default function Hero() {
           </span>
         </Line>
 
-        <h1 className="mt-4 lg:mt-6 font-serif uppercase leading-[0.92] text-ivory">
+        <h1 className="mt-4 lg:mt-6 font-serif uppercase text-ivory">
           <Line delay={0.3}>
-            <span data-testid="hero-title-brand" className="text-[2.6rem] sm:text-7xl lg:text-9xl tracking-[0.02em]">
+            <span data-testid="hero-title-brand" className="text-[2.4rem] sm:text-6xl lg:text-7xl xl:text-8xl leading-[1.02] tracking-[0.02em]">
               {t.hero.line1}
             </span>
           </Line>
           <Line delay={0.42}>
-            <span className="text-[2.6rem] sm:text-7xl lg:text-9xl tracking-[0.02em]">
+            <span className="mt-1 lg:mt-2 text-[1.35rem] sm:text-3xl lg:text-4xl leading-[1.1] tracking-[0.14em] text-gold-light">
               {t.hero.line2}
             </span>
           </Line>
         </h1>
 
-        <Line delay={0.55}>
-          <span data-testid="hero-title-sub" className="block mt-3 lg:mt-5 text-[10px] sm:text-sm tracking-[0.35em] sm:tracking-[0.45em] uppercase text-gold-light">
-            {t.hero.title2}
-          </span>
-        </Line>
-
-        <Line delay={0.68}>
-          <span data-testid="hero-tagline" className="block mt-4 lg:mt-6 font-serif italic text-base sm:text-2xl text-ivory/90">
-            {t.hero.tagline}
-          </span>
-        </Line>
-
         <motion.p
-          data-testid="hero-description"
+          data-testid="hero-subtitle"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.85, duration: 0.9, ease: [0.25, 1, 0.5, 1] }}
-          className="mt-4 lg:mt-5 max-w-xl text-[13px] sm:text-base text-ivory/70 leading-relaxed"
+          transition={{ delay: 0.62, duration: 0.9, ease: [0.25, 1, 0.5, 1] }}
+          className="mt-5 lg:mt-7 max-w-xl text-[15px] sm:text-lg text-ivory/90 leading-relaxed"
         >
-          {t.hero.desc}
+          {t.hero.subtitle}
+        </motion.p>
+
+        <motion.p
+          data-testid="hero-chips"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.78, duration: 0.9 }}
+          className="mt-4 text-[10px] sm:text-xs uppercase tracking-[0.22em] text-gold/90"
+        >
+          {t.hero.chips}
         </motion.p>
 
         <motion.div
