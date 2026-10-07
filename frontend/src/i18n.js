@@ -46,6 +46,7 @@ export const translations = {
         { title: "Eventi & Fashion", desc: "Servizi NCC per eventi, fiere, Milano Fashion Week, cerimonie e occasioni esclusive." },
         { title: "Viaggi e Trasferimenti", desc: "Trasferimenti da Milano verso le principali città e destinazioni turistiche in tutta Italia." },
         { title: "NCC con Guardia del Corpo", desc: "Su richiesta, servizio aggiuntivo con personale qualificato e autorizzato a norma di legge." },
+        { title: "Transfer Personalizzati", desc: "Itinerari su misura, shopping, visite ed eventi privati: costruiamo il servizio attorno alle tue esigenze." },
       ],
     },
     fleet: {
@@ -200,6 +201,7 @@ export const translations = {
         { title: "Events & Fashion", desc: "Chauffeur services for events, trade fairs, Milan Fashion Week, ceremonies and exclusive occasions." },
         { title: "Travel & Transfers", desc: "Transfers from Milan to major cities and tourist destinations throughout Italy." },
         { title: "NCC with Bodyguard", desc: "On request, an additional service with qualified staff authorised in compliance with the law." },
+        { title: "Custom Transfers", desc: "Tailor-made itineraries, shopping, tours and private events: we build the service around your needs." },
       ],
     },
     fleet: {

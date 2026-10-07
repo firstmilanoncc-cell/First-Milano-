@@ -123,3 +123,13 @@ Il sito non ha area riservata/login.
 - Conversione configurata dall'utente in Google Ads come caricamento pagina su https://firstmilanoncc.it/grazie
 - DEPLOY ESEGUITO e verificato live: firstmilanoncc.it/grazie serve titolo "Grazie | FIRST MILANO", dataLayer con config GA4+AW e evento page_view
 - In attesa: utente deve scegliere foto flotta reali tra /images/candidates/van-a.jpg, van-b.jpg, berlina-a.jpg, berlina-b.jpg (preview)
+
+## Aggiornamento (07/10/2026 — richieste utente: WhatsApp verde, bottoni arrotondati, fix menu, nuovo servizio)
+1. Bottoni WhatsApp (hero + pagine servizio) ora verdi brand #25D366 (hover #1DA851); FAB e modale già verdi
+2. Bottoni arrotondati globalmente via CSS: button, a[class*="inline-flex"] { border-radius: 12px } (rounded-full del FAB preservato perché classe Tailwind vince su selettore elemento)
+3. FIX BUG menu: dalle pagine servizio le voci menu non navigavano. Causa: Header usava window.location.href (reload) + scrollIntoView nativo che Lenis annullava. Ora: navigate SPA a "/#hash" + scroll via lenis.scrollTo (scrollTo helper) con offset -70, delay 600ms in Home
+4. Aggiunto 7° servizio "Transfer Personalizzati" / "Custom Transfers" (icona Route lucide) in i18n IT+EN
+5. Griglia servizi: da grid-cols-6 a flex-wrap justify-center con larghezze responsive (7 elementi: 4+3 centrato desktop, 3+3+1 tablet, 2-col mobile)
+6. Header: whitespace-nowrap su brand e voci nav (fix wrap a 1200-1400px)
+- Testato: screenshot 390/768/1300/1920px, navigazione menu da /transfer-malpensa a /#flotta verificata in viewport
+- RICHIEDE re-publish per andare live

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useLanguage } from "@/i18n";
@@ -35,6 +36,8 @@ export default function Header() {
   const { lang, setLang, t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -47,8 +50,8 @@ export default function Header() {
 
   const go = (hash) => {
     setOpen(false);
-    if (window.location.pathname !== "/") {
-      window.location.href = "/" + hash;
+    if (location.pathname !== "/") {
+      navigate("/" + hash);
       return;
     }
     scrollTo(hash);
@@ -66,10 +69,10 @@ export default function Header() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-[70px]">
           <button data-testid="brand-logo" onClick={() => go("#home")} className="text-left group">
-            <span className="block font-serif text-lg sm:text-xl tracking-[0.18em] text-ivory group-hover:text-gold-light transition-colors duration-300">
+            <span className="block font-serif text-lg sm:text-xl tracking-[0.18em] text-ivory group-hover:text-gold-light transition-colors duration-300 whitespace-nowrap">
               FIRST MILANO
             </span>
-            <span className="block text-[9px] tracking-[0.3em] uppercase text-gold">
+            <span className="block text-[9px] tracking-[0.3em] uppercase text-gold whitespace-nowrap">
               Private Chauffeur Service
             </span>
           </button>

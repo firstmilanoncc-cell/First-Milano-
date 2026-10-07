@@ -101,7 +101,7 @@ export default function Hero() {
           <button
             data-testid="hero-whatsapp-button"
             onClick={openWhatsAppForm}
-            className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 lg:px-8 lg:py-4 border border-ivory/40 bg-obsidian/40 backdrop-blur-sm lg:bg-transparent text-ivory text-[11px] lg:text-xs font-semibold tracking-[0.2em] uppercase hover:border-gold hover:text-gold-light transition-colors duration-300"
+            className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 lg:px-8 lg:py-4 bg-[#25D366] text-obsidian text-[11px] lg:text-xs font-bold tracking-[0.2em] uppercase hover:bg-[#1DA851] transition-colors duration-300"
           >
             <span className="w-4 h-4"><WhatsAppIcon /></span>
             {t.hero.ctaWhats}

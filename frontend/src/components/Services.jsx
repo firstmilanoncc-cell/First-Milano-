@@ -1,8 +1,8 @@
-import { Plane, Briefcase, Clock3, Gem, MapPin, ShieldCheck } from "lucide-react";
+import { Plane, Briefcase, Clock3, Gem, MapPin, ShieldCheck, Route } from "lucide-react";
 import { useLanguage } from "@/i18n";
 import { Reveal } from "@/components/Reveal";
 
-const ICONS = [Plane, Briefcase, Clock3, Gem, MapPin, ShieldCheck];
+const ICONS = [Plane, Briefcase, Clock3, Gem, MapPin, ShieldCheck, Route];
 
 export default function Services() {
   const { t } = useLanguage();
@@ -17,11 +17,11 @@ export default function Services() {
           <span className="mt-6 h-px w-16 bg-golddeep/60" />
         </Reveal>
 
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-12">
+        <div className="mt-16 flex flex-wrap justify-center gap-x-6 gap-y-12">
           {t.services.items.map((s, i) => {
             const Icon = ICONS[i];
             return (
-              <Reveal key={s.title} delay={i * 0.07}>
+              <Reveal key={s.title} delay={i * 0.07} className="w-[calc(50%-12px)] sm:w-[calc(33.333%-16px)] xl:w-[calc(25%-18px)]">
                 <div data-testid={`service-card-${i}`} className="group text-center h-full">
                   <Icon
                     size={30}

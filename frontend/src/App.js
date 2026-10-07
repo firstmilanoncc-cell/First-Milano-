@@ -20,6 +20,7 @@ import PaymentResult from "@/components/PaymentResult";
 import ThankYou from "@/components/ThankYou";
 import ServicePage from "@/components/ServicePage";
 import AnalyticsRouteListener from "@/components/AnalyticsRouteListener";
+import { scrollTo } from "@/lib/scroll";
 
 function Home() {
   const { lang } = useLanguage();
@@ -30,7 +31,9 @@ function Home() {
   }, [lang]);
   useEffect(() => {
     if (window.location.hash) {
-      setTimeout(() => document.querySelector(window.location.hash)?.scrollIntoView(), 700);
+      setTimeout(() => scrollTo(window.location.hash), 600);
+    } else {
+      window.scrollTo(0, 0);
     }
   }, []);
   return (
