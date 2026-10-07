@@ -23,9 +23,28 @@ export default function ServicePage({ slug }) {
     document.title = c.metaTitle;
     let desc = document.querySelector('meta[name="description"]');
     if (desc) desc.setAttribute("content", c.metaDesc);
+    const pageUrl = `https://firstmilanoncc.it/${slug}`;
     let canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) canonical.setAttribute("href", `https://firstmilanoncc.it/${slug}`);
+    if (canonical) canonical.setAttribute("href", pageUrl);
+    document.querySelector('meta[property="og:title"]')?.setAttribute("content", c.metaTitle);
+    document.querySelector('meta[property="og:description"]')?.setAttribute("content", c.metaDesc);
+    document.querySelector('meta[property="og:url"]')?.setAttribute("content", pageUrl);
+    document.querySelector('meta[name="twitter:title"]')?.setAttribute("content", c.metaTitle);
+    document.querySelector('meta[name="twitter:description"]')?.setAttribute("content", c.metaDesc);
     window.scrollTo(0, 0);
+
+    const breadcrumbScript = document.createElement("script");
+    breadcrumbScript.type = "application/ld+json";
+    breadcrumbScript.id = "breadcrumb-jsonld";
+    breadcrumbScript.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "FIRST MILANO", item: "https://firstmilanoncc.it/" },
+        { "@type": "ListItem", position: 2, name: c.h1, item: pageUrl },
+      ],
+    });
+    document.head.appendChild(breadcrumbScript);
 
     let faqScript = null;
     if (c.faqs?.length) {
@@ -43,7 +62,10 @@ export default function ServicePage({ slug }) {
       });
       document.head.appendChild(faqScript);
     }
-    return () => faqScript?.remove();
+    return () => {
+      faqScript?.remove();
+      breadcrumbScript.remove();
+    };
   }, [c, slug]);
 
   const goQuote = () => {
