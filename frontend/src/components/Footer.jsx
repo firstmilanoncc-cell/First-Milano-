@@ -16,17 +16,17 @@ const NAV = [
 ];
 
 const SERVICE_LINKS = [
-  { path: "/transfer-malpensa", label: "Transfer Malpensa" },
-  { path: "/transfer-linate", label: "Transfer Linate" },
-  { path: "/transfer-orio-al-serio", label: "Transfer Orio al Serio" },
-  { path: "/autista-a-disposizione", label: "Autista a Disposizione" },
-  { path: "/eventi-fashion-week", label: "Eventi & Fashion Week" },
-  { path: "/milano-lago-di-como", label: "Milano – Lago di Como" },
-  { path: "/milano-st-moritz", label: "Milano – St. Moritz" },
-  { path: "/milano-portofino", label: "Milano – Portofino" },
-  { path: "/milano-venezia", label: "Milano – Venezia" },
-  { path: "/milano-firenze", label: "Milano – Firenze" },
-  { path: "/milano-roma", label: "Milano – Roma" },
+  { path: "/transfer-malpensa", it: "Transfer Malpensa", en: "Malpensa Airport Transfer" },
+  { path: "/transfer-linate", it: "Transfer Linate", en: "Linate Airport Transfer" },
+  { path: "/transfer-orio-al-serio", it: "Transfer Orio al Serio", en: "Orio al Serio Transfer" },
+  { path: "/autista-a-disposizione", it: "Autista a Disposizione", en: "Chauffeur at Disposal" },
+  { path: "/eventi-fashion-week", it: "Eventi & Fashion Week", en: "Events & Fashion Week" },
+  { path: "/milano-lago-di-como", it: "Milano – Lago di Como", en: "Milan – Lake Como" },
+  { path: "/milano-st-moritz", it: "Milano – St. Moritz", en: "Milan – St. Moritz" },
+  { path: "/milano-portofino", it: "Milano – Portofino", en: "Milan – Portofino" },
+  { path: "/milano-venezia", it: "Milano – Venezia", en: "Milan – Venice" },
+  { path: "/milano-firenze", it: "Milano – Firenze", en: "Milan – Florence" },
+  { path: "/milano-roma", it: "Milano – Roma", en: "Milan – Rome" },
 ];
 
 const LegalModal = ({ title, body, onClose, closeLabel }) => (
@@ -56,7 +56,7 @@ const LegalModal = ({ title, body, onClose, closeLabel }) => (
 );
 
 export default function Footer() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [modal, setModal] = useState(null);
 
   useScrollLock(!!modal);
@@ -65,7 +65,7 @@ export default function Footer() {
     { id: "facebook", icon: Facebook, url: CONTACTS.social.facebook },
     { id: "instagram", icon: Instagram, url: CONTACTS.social.instagram },
     { id: "linkedin", icon: Linkedin, url: CONTACTS.social.linkedin },
-  ];
+  ].filter((social) => Boolean(social.url));
 
   const contactRows = [
     { id: "phone", icon: Phone, value: CONTACTS.phoneDisplay, href: `tel:${CONTACTS.phoneRaw}` },
@@ -83,7 +83,13 @@ export default function Footer() {
           <p className="font-serif text-xl tracking-[0.18em] text-ivory">FIRST MILANO</p>
           <p className="text-[10px] tracking-[0.3em] uppercase text-gold mt-1">Private Chauffeur Service</p>
           <p className="mt-5 text-sm text-sub leading-relaxed max-w-xs">{t.footer.tagline}</p>
-          <p className="mt-5 text-[11px] uppercase tracking-[0.25em] text-gold font-semibold">{t.footer.area}</p>
+          <button
+            onClick={() => scrollTo("#preventivo")}
+            className="mt-6 inline-flex items-center justify-center px-5 py-3 bg-gold text-obsidian text-[11px] font-semibold tracking-[0.16em] uppercase hover:bg-gold-light transition-colors duration-300 rounded-xl"
+          >
+            {t.nav.cta}
+          </button>
+          <p className="mt-6 text-[11px] uppercase tracking-[0.25em] text-gold font-semibold">{t.footer.area}</p>
           <p data-testid="footer-area" className="mt-2 text-sm text-sub">{AREA}</p>
         </div>
         <div>
@@ -139,14 +145,15 @@ export default function Footer() {
                   href={s.path}
                   className="text-[12px] text-dim hover:text-gold-light transition-colors duration-300"
                 >
-                  {s.label}
+                  {s[lang]}
                 </a>
               </li>
             ))}
           </ul>
-          <div className="mt-7 flex gap-3">
-            {socials.map(({ id, icon: Icon, url }) => (
-              <a
+          {socials.length > 0 && (
+            <div className="mt-7 flex gap-3">
+              {socials.map(({ id, icon: Icon, url }) => (
+                <a
                 key={id}
                 data-testid={`social-${id}`}
                 href={url || "#"}
@@ -156,9 +163,10 @@ export default function Footer() {
                 className="p-2.5 border border-gold/40 text-gold hover:bg-gold hover:text-obsidian transition-colors duration-300"
               >
                 <Icon size={15} strokeWidth={1.5} />
-              </a>
-            ))}
-          </div>
+                </a>
+              ))}
+            </div>
+          )}
         </div>
       </div>
       <div className="border-t border-white/5">
