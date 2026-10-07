@@ -336,6 +336,12 @@ async def health():
     return {"status": "ok"}
 
 
+# Health check a livello root: richiesto dal sistema di deploy (probe Kubernetes)
+@app.get("/health")
+async def root_health():
+    return {"status": "ok"}
+
+
 app.include_router(api_router)
 
 app.add_middleware(
