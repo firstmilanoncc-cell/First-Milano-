@@ -133,3 +133,22 @@ Il sito non ha area riservata/login.
 6. Header: whitespace-nowrap su brand e voci nav (fix wrap a 1200-1400px)
 - Testato: screenshot 390/768/1300/1920px, navigazione menu da /transfer-malpensa a /#flotta verificata in viewport
 - RICHIEDE re-publish per andare live
+
+## Aggiornamento (07/10/2026 — REDESIGN COMPLETO orientato conversione, 16 punti utente)
+Richiesta: migliorare il sito senza rifarlo da zero, più premium, più conversioni, nessun dato inventato.
+
+Implementato:
+1. HERO riscritta: H1 "NCC Milano / Private Chauffeur Service" (EN "Milan Private / Chauffeur Service"), sottotitolo conversione, riga chip destinazioni, CTA "Richiedi disponibilità" + WhatsApp verde; brand in eyebrow
+2. WHY US ridisegnata: 6 vantaggi con icone (autisti professionisti, puntuale/discreto, monitoraggio voli, accoglienza aeroporto, veicoli premium, servizio su prenotazione) — solo fatti già dichiarati
+3. REVIEWS: componente pronto (Reviews.jsx + REVIEWS/PARTNERS in config.js) ma NON visibile finché vuoto — nessuna recensione inventata
+4. FLOTTA: chip specifiche passeggeri/bagagli/uso ideale (dati già presenti: berlina 1-3 pax, van fino a 7)
+5. FORM: riordinato (partenza→destinazione→data→ora→passeggeri→servizio→nome→telefono→email, bagagli/note opzionali), striscia promessa, CTA WhatsApp alternativa; backend/payload invariati
+6. PAGINE AEROPORTI: H1 SEO nuovi, 6-7 sezioni informative (accoglienza, ritardi, punto incontro, andata/ritorno, famiglie, business, bagagli), 5 FAQ accordion + JSON-LD FAQPage, CTA metà pagina
+7. SEI NUOVE LANDING TRATTE: /milano-lago-di-como, /milano-st-moritz, /milano-portofino, /milano-venezia, /milano-firenze, /milano-roma — contenuti originali IT+EN, sezioni, FAQ, distanze/tempi reali
+8. FOOTER: area operativa + link alle 11 pagine servizio; email centralizzata in config.js (facile sostituire Gmail con @firstmilanoncc.it)
+9. MOBILE: barra CTA fissa (WhatsApp+Preventivo, safe-area, z-30 sotto modali); FAB WhatsApp ora solo desktop
+10. SEO: sitemap con 11 pagine, FAQ schema, alt text, CTA specifiche (no più "Scopri di più")
+11. PERFORMANCE: tutte le immagini convertite in WebP (hero 246→173KB ecc.), route-sedan ridimensionata 1400px, fetchPriority hero, lazy loading già presente
+12. Fix collaterali: fetchPriority camelCase, goQuote via location.hash (niente race setTimeout)
+- Test: iteration_6 = 100% backend + 100% frontend, self-test finale ok
+- NON ANCORA PUBBLICATO: utente vuole controllare prima in anteprima. Rollback disponibile per tornare alla versione precedente.

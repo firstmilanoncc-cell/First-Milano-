@@ -36,7 +36,7 @@ export default function Hero() {
           alt="Piazza del Duomo di Milano di sera con Mercedes nera e autista professionale"
           className="w-full h-[106%] object-cover object-[64%_center] lg:object-[center_35%] brightness-[1.22]"
           loading="eager"
-          fetchpriority="high"
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-obsidian/60 via-obsidian/45 to-obsidian/75 lg:bg-gradient-to-r lg:from-obsidian/60 lg:via-obsidian/20 lg:to-transparent" />
         <div className="hidden lg:block absolute inset-0 bg-gradient-to-t from-obsidian/60 via-transparent to-obsidian/15" />

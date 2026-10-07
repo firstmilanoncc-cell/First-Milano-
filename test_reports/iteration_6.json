@@ -1,0 +1,26 @@
+{
+  "summary": "Full regression on FIRST MILANO conversion-oriented refresh. Backend /api/quote OK (200, email_sent). 11 service pages served, sitemap.xml lists all 11. Frontend: hero rewritten correctly (new subtitle 'Transfer aeroportuali... autista privato a Milano', chips with Malpensa/Linate/Orio/Business/Eventi/Lunga percorrenza), 6 WhyUs cards render, Reviews section hidden (empty config, as intended), QuoteForm field order (pickup before name) correct, promise strip and WhatsApp alt button present. Full submit → POST /api/quote → /grazie confirmed. Mobile 390: mobile-cta-bar visible with both buttons functional (WhatsApp opens modal), FAB WhatsApp hidden on mobile. Desktop 1366: mobile-cta-bar hidden; FAB appears after scroll (scroll-gated, OK). /transfer-malpensa has new H1, 7 service-info sections, 5 FAQ accordions clickable, JSON-LD FAQPage injected in <head>. All 6 new landings (/milano-lago-di-como, /milano-st-moritz, /milano-portofino, /milano-venezia, /milano-firenze, /milano-roma) load with correct H1, 3 info sections, 4 FAQs. EN switch on /milano-venezia translates H1 to 'Private Transfer from Milan to Venice'. Mobile menu nav from /milano-roma → Flotta correctly navigates to home and scrolls (scrollY=2153 at #flotta).",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Hero image (console)", "issues": ["React warning: Invalid DOM property fetchpriority — should be fetchPriority (camelCase) in JSX. Non-blocking but noisy in console (3 occurrences)."]}
+    ]
+  },
+  "test_report_links": ["/app/backend/tests/test_quote_api.py", "/app/test_reports/pytest/pytest_results.xml"],
+  "action_items": [
+    "Minor: in Hero.jsx line 39, change fetchpriority=\"high\" to fetchPriority=\"high\" to silence React warning."
+  ],
+  "critical_code_review_comments": [
+    "Hero.jsx uses lowercase fetchpriority attribute which React 18 flags as invalid DOM prop; use camelCase fetchPriority in JSX (browser still receives it as fetchpriority).",
+    "ServicePage.jsx goQuote() uses setTimeout(800) + scrollIntoView which depends on React render completion — could race on slow devices; consider waiting on a state flag or using location.hash."
+  ],
+  "updated_files": ["/app/backend/tests/test_quote_api.py"],
+  "success_rate": {"backend": "100%", "frontend": "100%"},
+  "test_credentials": "N/A (public site)",
+  "seed_data_creation": "One POST /api/quote with TEST_UI/TEST_Mario Rossi — email-log only, no DB cleanup needed.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "All conversion-oriented changes verified: new hero copy, 6-item WhyUs, reordered QuoteForm, WhatsApp alt CTA, mobile-cta-bar + hidden FAB on mobile, 6 new long-distance landings, EN i18n, FAQ accordions with JSON-LD FAQPage, sitemap.xml complete. Reviews section intentionally not rendered (REVIEWS=[]). Backend /api/quote regression unchanged."
+}

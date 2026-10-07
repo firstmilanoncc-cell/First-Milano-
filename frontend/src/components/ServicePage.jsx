@@ -47,8 +47,7 @@ export default function ServicePage({ slug }) {
   }, [c, slug]);
 
   const goQuote = () => {
-    navigate("/");
-    setTimeout(() => document.querySelector("#preventivo")?.scrollIntoView({ behavior: "smooth" }), 800);
+    navigate("/#preventivo");
   };
 
   return (
