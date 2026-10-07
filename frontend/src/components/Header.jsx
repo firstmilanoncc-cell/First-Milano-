@@ -16,7 +16,7 @@ const NAV = [
 ];
 
 const LangSwitch = ({ lang, setLang, testPrefix }) => (
-  <div className="flex items-center border border-white/15 overflow-hidden" data-testid={`${testPrefix}-lang-switcher`}>
+  <div className="flex items-center border border-white/15 overflow-hidden rounded-lg bg-obsidian/30" data-testid={`${testPrefix}-lang-switcher`}>
     {["it", "en"].map((l) => (
       <button
         key={l}
@@ -95,7 +95,7 @@ export default function Header() {
             <button
               data-testid="nav-preventivo-button"
               onClick={() => go("#preventivo")}
-              className="hidden md:inline-flex items-center px-5 py-2.5 bg-gold text-obsidian text-[11px] font-semibold tracking-[0.18em] uppercase hover:bg-gold-light transition-colors duration-300"
+              className="hidden md:inline-flex items-center px-5 py-2.5 bg-gold text-obsidian text-[11px] font-semibold tracking-[0.18em] uppercase hover:bg-gold-light transition-colors duration-300 rounded-xl shadow-lg shadow-black/10"
             >
               {t.nav.cta}
             </button>
@@ -103,7 +103,7 @@ export default function Header() {
               data-testid="mobile-menu-button"
               aria-label={open ? t.nav.menuClose : t.nav.menuOpen}
               onClick={() => setOpen(!open)}
-              className="xl:hidden p-2 text-ivory hover:text-gold transition-colors"
+              className="xl:hidden p-2.5 text-ivory hover:text-gold transition-colors rounded-xl border border-white/10 bg-white/5"
             >
               {open ? <X size={22} /> : <Menu size={22} />}
             </button>
@@ -142,7 +142,7 @@ export default function Header() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
               onClick={() => go("#preventivo")}
-              className="mt-8 w-full py-4 bg-gold text-obsidian text-xs font-semibold tracking-[0.2em] uppercase"
+              className="mt-8 w-full py-4 bg-gold text-obsidian text-xs font-semibold tracking-[0.2em] uppercase rounded-xl"
             >
               {t.nav.cta}
             </motion.button>
