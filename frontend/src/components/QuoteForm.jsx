@@ -13,7 +13,7 @@ const EMPTY = {
 };
 
 const inputCls =
-  "w-full bg-anthracite border border-white/10 focus:border-gold/60 px-4 py-3 text-base sm:text-sm text-ivory outline-none transition-colors duration-300 placeholder:text-dim rounded-none";
+  "w-full bg-anthracite border border-white/10 focus:border-gold/60 px-4 py-3.5 text-base sm:text-sm text-ivory outline-none transition-colors duration-300 placeholder:text-dim rounded-xl";
 
 const Field = ({ label, htmlFor, children }) => (
   <div className="flex flex-col gap-2">
@@ -79,8 +79,12 @@ export default function QuoteForm() {
           <form
             data-testid="quote-form"
             onSubmit={onSubmit}
-            className="mt-12 border border-gold/20 bg-obsidian/80 backdrop-blur-md p-6 sm:p-10 grid grid-cols-1 sm:grid-cols-2 gap-6"
+            className="mt-12 border border-gold/20 bg-obsidian/80 backdrop-blur-md p-6 sm:p-10 grid grid-cols-1 sm:grid-cols-2 gap-6 rounded-3xl shadow-2xl shadow-black/20"
           >
+            <div className="sm:col-span-2 flex items-center gap-4">
+              <span className="text-[10px] uppercase tracking-[0.28em] text-gold font-semibold">{q.tripDetails}</span>
+              <span className="h-px flex-1 bg-white/10" />
+            </div>
             <Field label={q.pickup} htmlFor="q-pickup">
               <AddressInput id="q-pickup" testId="quote-input-pickup" required className={inputCls} value={form.pickup} onChange={setAddr("pickup")} />
             </Field>
@@ -96,14 +100,14 @@ export default function QuoteForm() {
             <Field label={q.passengers} htmlFor="q-passengers">
               <input id="q-passengers" data-testid="quote-input-passengers" type="number" min="1" max="8" inputMode="numeric" className={inputCls} value={form.passengers} onChange={set("passengers")} />
             </Field>
-            <Field label={q.serviceType} htmlFor="q-service">
-              <select id="q-service" data-testid="quote-select-service" required className={inputCls} value={form.service_type} onChange={set("service_type")}>
-                <option value="" disabled>{q.selectPlaceholder}</option>
-                {q.services.map((s) => (
-                  <option key={s} value={s}>{s}</option>
-                ))}
-              </select>
+            <Field label={q.luggage} htmlFor="q-luggage">
+              <input id="q-luggage" data-testid="quote-input-luggage" type="number" min="0" max="12" inputMode="numeric" className={inputCls} value={form.luggage} onChange={set("luggage")} />
             </Field>
+
+            <div className="sm:col-span-2 flex items-center gap-4 pt-2">
+              <span className="text-[10px] uppercase tracking-[0.28em] text-gold font-semibold">{q.contactDetails}</span>
+              <span className="h-px flex-1 bg-white/10" />
+            </div>
             <Field label={q.name} htmlFor="q-name">
               <input id="q-name" data-testid="quote-input-name" required autoComplete="name" className={inputCls} value={form.name} onChange={set("name")} />
             </Field>
@@ -113,8 +117,13 @@ export default function QuoteForm() {
             <Field label={q.email} htmlFor="q-email">
               <input id="q-email" data-testid="quote-input-email" required type="email" autoComplete="email" inputMode="email" className={inputCls} value={form.email} onChange={set("email")} />
             </Field>
-            <Field label={q.luggage} htmlFor="q-luggage">
-              <input id="q-luggage" data-testid="quote-input-luggage" type="number" min="0" max="12" inputMode="numeric" className={inputCls} value={form.luggage} onChange={set("luggage")} />
+            <Field label={q.serviceType} htmlFor="q-service">
+              <select id="q-service" data-testid="quote-select-service" className={inputCls} value={form.service_type} onChange={set("service_type")}>
+                <option value="">{q.selectPlaceholder}</option>
+                {q.services.map((s) => (
+                  <option key={s} value={s}>{s}</option>
+                ))}
+              </select>
             </Field>
             <div className="sm:col-span-2">
               <Field label={q.notes} htmlFor="q-notes">
@@ -136,17 +145,20 @@ export default function QuoteForm() {
               data-testid="quote-form-submit"
               type="submit"
               disabled={sending}
-              className="sm:col-span-2 py-4 bg-gold text-obsidian text-xs font-semibold tracking-[0.25em] uppercase hover:bg-gold-light transition-colors duration-300 disabled:opacity-50"
+              className="sm:col-span-2 py-4 bg-gold text-obsidian text-xs font-semibold tracking-[0.25em] uppercase hover:bg-gold-light transition-colors duration-300 disabled:opacity-50 rounded-xl shadow-lg shadow-gold/10"
             >
               {sending ? q.sending : q.submit}
             </button>
+            <p className="sm:col-span-2 -mt-2 text-center text-[11px] leading-relaxed text-dim">
+              {q.trustNote}
+            </p>
             <div className="sm:col-span-2 mt-2 border-t border-white/10 pt-6 text-center">
               <p className="text-xs text-sub">{q.waAlt}</p>
               <button
                 type="button"
                 data-testid="quote-whatsapp-alt"
                 onClick={openWhatsAppForm}
-                className="mt-4 w-full inline-flex items-center justify-center gap-2.5 py-4 bg-[#25D366] text-obsidian text-xs font-bold tracking-[0.2em] uppercase hover:bg-[#1DA851] transition-colors duration-300"
+                className="mt-4 w-full inline-flex items-center justify-center gap-2.5 py-4 bg-[#25D366] text-obsidian text-xs font-bold tracking-[0.2em] uppercase hover:bg-[#1DA851] transition-colors duration-300 rounded-xl"
               >
                 <span className="w-4 h-4"><WhatsAppIcon /></span>
                 {q.waAltButton}
