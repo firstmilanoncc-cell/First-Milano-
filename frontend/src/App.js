@@ -11,6 +11,7 @@ import Marquee from "@/components/Marquee";
 import Services from "@/components/Services";
 import Fleet from "@/components/Fleet";
 import Airports from "@/components/Airports";
+import Destinations from "@/components/Destinations";
 import WhyUs from "@/components/WhyUs";
 import Reviews from "@/components/Reviews";
 import QuoteForm from "@/components/QuoteForm";
@@ -22,6 +23,7 @@ import ThankYou from "@/components/ThankYou";
 import ServicePage from "@/components/ServicePage";
 import AnalyticsRouteListener from "@/components/AnalyticsRouteListener";
 import MobileCtaBar from "@/components/MobileCtaBar";
+import CookieConsent from "@/components/CookieConsent";
 import { scrollTo } from "@/lib/scroll";
 
 function Home() {
@@ -54,6 +56,7 @@ function Home() {
         <Services />
         <Fleet />
         <Airports />
+        <Destinations />
         <WhyUs />
         <Reviews />
         <QuoteForm />
@@ -107,6 +110,7 @@ function App() {
             <Route path="/milano-roma" element={<ServicePage slug="milano-roma" />} />
           </Routes>
         </BrowserRouter>
+        <CookieConsent />
         <Toaster position="top-center" theme="dark" />
       </div>
     </LanguageProvider>

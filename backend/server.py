@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter, HTTPException, Request
+from fastapi import FastAPI, APIRouter, HTTPException, Request, Header
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -9,6 +9,8 @@ import logging
 import uuid
 import httpx
 import stripe
+from collections import defaultdict, deque
+from time import monotonic
 from pathlib import Path
 from pydantic import BaseModel, EmailStr
 from typing import Optional
@@ -39,6 +41,43 @@ OWNER_EMAIL = os.environ.get("OWNER_EMAIL")
 stripe.api_key = os.environ.get("STRIPE_SECRET_KEY") or "sk_test_emergent"
 STRIPE_WEBHOOK_SECRET = os.environ.get("STRIPE_WEBHOOK_SECRET", "")
 PAYMENT_PIN = os.environ.get("PAYMENT_PIN")
+PUBLIC_SITE_URL = os.environ.get("PUBLIC_SITE_URL", "https://firstmilanoncc.it").rstrip("/")
+PAYMENT_ALLOWED_ORIGINS = {
+    origin.strip().rstrip("/")
+    for origin in os.environ.get(
+        "PAYMENT_ALLOWED_ORIGINS",
+        "https://firstmilanoncc.it,https://www.firstmilanoncc.it",
+    ).split(",")
+    if origin.strip()
+}
+PAYMENT_ALLOWED_ORIGINS.add(PUBLIC_SITE_URL)
+
+_RATE_BUCKETS = defaultdict(deque)
+
+
+def _client_ip(request: Request) -> str:
+    forwarded = request.headers.get("x-forwarded-for", "").split(",")[0].strip()
+    if forwarded:
+        return forwarded[:80]
+    return (request.client.host if request.client else "unknown")[:80]
+
+
+def _enforce_rate_limit(request: Request, bucket: str, limit: int, window_seconds: int) -> None:
+    key = f"{bucket}:{_client_ip(request)}"
+    now = monotonic()
+    hits = _RATE_BUCKETS[key]
+    cutoff = now - window_seconds
+    while hits and hits[0] < cutoff:
+        hits.popleft()
+    if len(hits) >= limit:
+        raise HTTPException(status_code=429, detail="Troppe richieste. Riprova tra qualche minuto.")
+    hits.append(now)
+
+
+def _payment_origin(request: Request) -> str:
+    origin = request.headers.get("origin", "").strip().rstrip("/")
+    return origin if origin in PAYMENT_ALLOWED_ORIGINS else PUBLIC_SITE_URL
+
 
 # ---- Email guardrail gate (managed email integration) ----
 _SHORTENERS = ("bit.ly", "tinyurl.com", "t.co", "is.gd", "cutt.ly", "goo.gl", "rebrand.ly")
@@ -144,6 +183,7 @@ class QuoteRequest(BaseModel):
     notes: Optional[str] = ""
     privacy: bool
     lang: str = "it"
+    website: Optional[str] = ""
 
 
 def _row(label: str, value: str) -> str:
@@ -184,10 +224,13 @@ def _quote_email_html(q: QuoteRequest) -> str:
 
 
 @api_router.post("/quote")
-async def create_quote(q: QuoteRequest):
+async def create_quote(q: QuoteRequest, request: Request):
+    _enforce_rate_limit(request, "quote", limit=6, window_seconds=600)
+    if q.website:
+        return {"status": "success", "email_sent": False}
     if not q.privacy:
         raise HTTPException(status_code=422, detail="Privacy consent required")
-    doc = q.model_dump()
+    doc = q.model_dump(exclude={"website"})
     doc["id"] = str(uuid.uuid4())
     doc["created_at"] = datetime.now(timezone.utc).isoformat()
     await db.quotes.insert_one(doc)
@@ -207,25 +250,29 @@ async def create_quote(q: QuoteRequest):
 
 # ---- Pagamenti con carta (area riservata) ----
 class PaymentLinkRequest(BaseModel):
-    pin: str
     amount: float
     description: str = "Servizio NCC FIRST MILANO"
     reference: Optional[str] = ""
     client_name: Optional[str] = ""
-    origin_url: str
 
 
-def _check_pin(pin: str):
+def _check_pin(pin: Optional[str]):
     if not PAYMENT_PIN or pin != PAYMENT_PIN:
         raise HTTPException(status_code=403, detail="PIN non valido")
 
 
 @api_router.post("/payments/create-link")
-async def create_payment_link(req: PaymentLinkRequest):
-    _check_pin(req.pin)
+async def create_payment_link(
+    req: PaymentLinkRequest,
+    request: Request,
+    x_payment_pin: Optional[str] = Header(default=None),
+):
+    _enforce_rate_limit(request, "payment-auth", limit=15, window_seconds=600)
+    _check_pin(x_payment_pin)
     if not (1 <= req.amount <= 500000):
         raise HTTPException(status_code=422, detail="Importo non valido")
     now = datetime.now(timezone.utc).isoformat()
+    origin_url = _payment_origin(request)
     kwargs = dict(
         line_items=[{
             "price_data": {
@@ -237,8 +284,8 @@ async def create_payment_link(req: PaymentLinkRequest):
             "quantity": 1,
         }],
         mode="payment",
-        success_url=f"{req.origin_url}/pagamento/successo?session_id={{CHECKOUT_SESSION_ID}}",
-        cancel_url=f"{req.origin_url}/pagamento/annullato",
+        success_url=f"{origin_url}/pagamento/successo?session_id={{CHECKOUT_SESSION_ID}}",
+        cancel_url=f"{origin_url}/pagamento/annullato",
         metadata={"reference": req.reference or "", "client_name": req.client_name or ""},
     )
     try:
@@ -273,8 +320,12 @@ async def create_payment_link(req: PaymentLinkRequest):
 
 
 @api_router.get("/payments")
-async def list_payments(pin: str = ""):
-    _check_pin(pin)
+async def list_payments(
+    request: Request,
+    x_payment_pin: Optional[str] = Header(default=None),
+):
+    _enforce_rate_limit(request, "payment-auth", limit=15, window_seconds=600)
+    _check_pin(x_payment_pin)
     cursor = db.payment_transactions.find({}, {"_id": 0}).sort("created_at", -1).limit(20)
     return {"payments": await cursor.to_list(length=20)}
 
@@ -346,7 +397,7 @@ app.include_router(api_router)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_credentials=True,
+    allow_credentials=False,
     allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
     allow_methods=["*"],
     allow_headers=["*"],

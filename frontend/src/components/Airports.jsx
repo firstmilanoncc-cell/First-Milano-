@@ -4,7 +4,7 @@ import { Reveal } from "@/components/Reveal";
 import { scrollTo } from "@/lib/scroll";
 import { IMAGES } from "@/config";
 
-const Panel = ({ id, image, icon: Icon, eyebrow, title, text, note, cta, testId }) => (
+const Panel = ({ id, image, icon: Icon, eyebrow, title, text, note, cta, testId, links = [], linksLabel }) => (
   <div
     id={id}
     data-testid={testId}
@@ -25,6 +25,22 @@ const Panel = ({ id, image, icon: Icon, eyebrow, title, text, note, cta, testId 
       <h3 className="mt-4 font-serif text-3xl sm:text-4xl lg:text-[2.6rem] text-ivory uppercase leading-tight">{title}</h3>
       <p className="mt-4 text-sm text-ivory/70 leading-relaxed max-w-md">{text}</p>
       {note && <p className="mt-3 text-[11px] text-ivory/45 italic max-w-md leading-relaxed">{note}</p>}
+      {links.length > 0 && (
+        <div className="mt-6">
+          {linksLabel && <p className="text-[10px] uppercase tracking-[0.18em] text-ivory/45">{linksLabel}</p>}
+          <div className="mt-3 flex flex-wrap gap-2">
+            {links.map((link) => (
+              <a
+                key={link.path}
+                href={link.path}
+                className="rounded-full border border-white/15 bg-obsidian/35 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-ivory/85 transition-colors hover:border-gold/50 hover:text-gold-light"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
       <button
         data-testid={`${testId}-cta`}
         onClick={() => scrollTo("#preventivo")}
@@ -48,6 +64,12 @@ export default function Airports() {
           title={t.airports.title}
           text={t.airports.desc}
           cta={t.airports.cta}
+          linksLabel={t.airports.explore}
+          links={[
+            { path: "/transfer-malpensa", label: "Malpensa" },
+            { path: "/transfer-linate", label: "Linate" },
+            { path: "/transfer-orio-al-serio", label: "Orio al Serio" },
+          ]}
           testId="panel-airports"
         />
       </Reveal>
