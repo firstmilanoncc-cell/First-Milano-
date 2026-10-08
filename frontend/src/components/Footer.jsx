@@ -180,6 +180,14 @@ export default function Footer() {
             <button data-testid="footer-cookie-link" onClick={() => setModal("cookie")} className="hover:text-gold-light transition-colors">
               {t.footer.cookie}
             </button>
+            <span className="text-white/10">|</span>
+            <button
+              data-testid="footer-cookie-settings"
+              onClick={() => window.dispatchEvent(new CustomEvent("firstmilano:cookie-settings"))}
+              className="hover:text-gold-light transition-colors"
+            >
+              {t.footer.cookieSettings}
+            </button>
           </div>
         </div>
       </div>
