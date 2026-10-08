@@ -27,7 +27,9 @@ export default function PaymentPage() {
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
 
   const loadPayments = async (p) => {
-    const res = await fetch(`${API}/api/payments?pin=${encodeURIComponent(p)}`);
+    const res = await fetch(`${API}/api/payments`, {
+      headers: { "X-Payment-Pin": p },
+    });
     if (!res.ok) throw new Error("pin");
     const data = await res.json();
     setPayments(data.payments || []);
@@ -64,8 +66,11 @@ export default function PaymentPage() {
     try {
       const res = await fetch(`${API}/api/payments/create-link`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, amount, pin, origin_url: window.location.origin }),
+        headers: {
+          "Content-Type": "application/json",
+          "X-Payment-Pin": pin,
+        },
+        body: JSON.stringify({ ...form, amount }),
       });
       if (!res.ok) throw new Error("create");
       const data = await res.json();
