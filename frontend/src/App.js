@@ -11,6 +11,7 @@ import Marquee from "@/components/Marquee";
 import Services from "@/components/Services";
 import Fleet from "@/components/Fleet";
 import Airports from "@/components/Airports";
+import Destinations from "@/components/Destinations";
 import WhyUs from "@/components/WhyUs";
 import Reviews from "@/components/Reviews";
 import QuoteForm from "@/components/QuoteForm";
@@ -55,6 +56,7 @@ function Home() {
         <Services />
         <Fleet />
         <Airports />
+        <Destinations />
         <WhyUs />
         <Reviews />
         <QuoteForm />
