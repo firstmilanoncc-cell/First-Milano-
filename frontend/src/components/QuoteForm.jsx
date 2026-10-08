@@ -9,7 +9,7 @@ import { WhatsAppIcon } from "@/components/FloatingWhatsApp";
 
 const EMPTY = {
   name: "", phone: "", email: "", pickup: "", destination: "",
-  date: "", time: "", passengers: 1, luggage: 0, service_type: "", notes: "", privacy: false,
+  date: "", time: "", passengers: 1, luggage: 0, service_type: "", notes: "", privacy: false, website: "",
 };
 
 const inputCls =
@@ -81,6 +81,17 @@ export default function QuoteForm() {
             onSubmit={onSubmit}
             className="mt-12 border border-gold/20 bg-obsidian/80 backdrop-blur-md p-6 sm:p-10 grid grid-cols-1 sm:grid-cols-2 gap-6 rounded-3xl shadow-2xl shadow-black/20"
           >
+            <div className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
+              <label htmlFor="q-website">Website</label>
+              <input
+                id="q-website"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                value={form.website}
+                onChange={set("website")}
+              />
+            </div>
             <div className="sm:col-span-2 flex items-center gap-4">
               <span className="text-[10px] uppercase tracking-[0.28em] text-gold font-semibold">{q.tripDetails}</span>
               <span className="h-px flex-1 bg-white/10" />
