@@ -267,7 +267,7 @@ async def create_payment_link(
     request: Request,
     x_payment_pin: Optional[str] = Header(default=None),
 ):
-    _enforce_rate_limit(request, "payment-create", limit=20, window_seconds=600)
+    _enforce_rate_limit(request, "payment-auth", limit=15, window_seconds=600)
     _check_pin(x_payment_pin)
     if not (1 <= req.amount <= 500000):
         raise HTTPException(status_code=422, detail="Importo non valido")
@@ -324,7 +324,7 @@ async def list_payments(
     request: Request,
     x_payment_pin: Optional[str] = Header(default=None),
 ):
-    _enforce_rate_limit(request, "payment-list", limit=30, window_seconds=600)
+    _enforce_rate_limit(request, "payment-auth", limit=15, window_seconds=600)
     _check_pin(x_payment_pin)
     cursor = db.payment_transactions.find({}, {"_id": 0}).sort("created_at", -1).limit(20)
     return {"payments": await cursor.to_list(length=20)}
