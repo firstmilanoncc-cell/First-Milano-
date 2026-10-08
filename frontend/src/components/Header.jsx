@@ -10,7 +10,6 @@ const NAV = [
   { hash: "#servizi", key: "servizi" },
   { hash: "#flotta", key: "flotta" },
   { hash: "#aeroporti", key: "aeroporti" },
-  { hash: "#guardia", key: "guardia" },
   { hash: "#chi-siamo", key: "chisiamo" },
   { hash: "#contatti", key: "contatti" },
 ];
