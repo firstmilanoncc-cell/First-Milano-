@@ -24,6 +24,18 @@ export default function PaymentPage() {
   const [generated, setGenerated] = useState(null);
   const [payments, setPayments] = useState([]);
 
+  useEffect(() => {
+    const previousTitle = document.title;
+    const robots = document.querySelector('meta[name="robots"]');
+    const previousRobots = robots?.getAttribute("content");
+    document.title = "Area pagamenti | FIRST MILANO";
+    robots?.setAttribute("content", "noindex, nofollow");
+    return () => {
+      document.title = previousTitle;
+      if (robots && previousRobots) robots.setAttribute("content", previousRobots);
+    };
+  }, []);
+
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
 
   const loadPayments = async (p) => {
