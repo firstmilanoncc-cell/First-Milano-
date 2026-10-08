@@ -7,6 +7,20 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){window.dataLayer.push(arguments);}
     window.gtag = gtag;
+
+    var savedConsent = null;
+    try {
+      savedConsent = JSON.parse(localStorage.getItem('firstmilano_consent_v1'));
+    } catch (e) {}
+
+    gtag('consent', 'default', {
+      analytics_storage: savedConsent && savedConsent.analytics === true ? 'granted' : 'denied',
+      ad_storage: savedConsent && savedConsent.marketing === true ? 'granted' : 'denied',
+      ad_user_data: savedConsent && savedConsent.marketing === true ? 'granted' : 'denied',
+      ad_personalization: savedConsent && savedConsent.marketing === true ? 'granted' : 'denied',
+      wait_for_update: 500
+    });
+
     gtag('js', new Date());
     gtag('config', 'G-22NMGM3J1F', { send_page_view: false });
     gtag('config', 'AW-18450759460', { send_page_view: false });
