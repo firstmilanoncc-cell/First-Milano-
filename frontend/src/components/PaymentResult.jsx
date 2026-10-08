@@ -10,6 +10,18 @@ export default function PaymentResult({ cancelled = false }) {
   const [status, setStatus] = useState(cancelled ? "cancelled" : "loading");
 
   useEffect(() => {
+    const previousTitle = document.title;
+    const robots = document.querySelector('meta[name="robots"]');
+    const previousRobots = robots?.getAttribute("content");
+    document.title = "Pagamento | FIRST MILANO";
+    robots?.setAttribute("content", "noindex, nofollow");
+    return () => {
+      document.title = previousTitle;
+      if (robots && previousRobots) robots.setAttribute("content", previousRobots);
+    };
+  }, []);
+
+  useEffect(() => {
     if (cancelled || !sessionId) return;
     let attempts = 0;
     const poll = async () => {
