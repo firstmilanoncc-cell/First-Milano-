@@ -22,7 +22,7 @@ export default function Services() {
           {t.services.items.map((s, i) => {
             const Icon = ICONS[i];
             return (
-              <Reveal key={s.title} delay={i * 0.07} className="w-[calc(50%-12px)] sm:w-[calc(33.333%-16px)] xl:w-[calc(25%-18px)]">
+              <Reveal key={s.title} delay={i * 0.07} className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] xl:w-[calc(25%-18px)]">
                 <div data-testid={`service-card-${i}`} className="group text-center h-full border border-ink/10 bg-white/45 p-6 sm:p-7 rounded-2xl transition-all duration-500 hover:-translate-y-1 hover:bg-white/80 hover:shadow-xl hover:shadow-black/5">
                   <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-golddeep/8 text-golddeep transition-all duration-500 group-hover:bg-golddeep group-hover:text-cream">
                     <Icon
